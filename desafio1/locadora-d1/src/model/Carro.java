@@ -61,10 +61,10 @@ public class Carro extends Veiculo {
 	}
 	
 	
-//	@Override
-//	public String toString() {
-//		return "Carro [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ......]";
-//	}
+	@Override
+	public String toString() {
+		return "Carro [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ......]";
+	}
 	
 
 }
