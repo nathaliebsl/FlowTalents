@@ -42,20 +42,16 @@ public class Cliente {
 		return classeCnh;
 	}
 	
-//	public void addCnh(ArrayList<String> cnh) {
 	public void addCnh(String cnh) {
 		if(!Utilities.validaCnh(String.valueOf(cnh))) {
 			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
-		} for(String c : classeCnh) {
-			 if(c.equals(cnh)) {
-				break;
-			} else if(Utilities.validaCnh(String.valueOf(cnh))) {
-				classeCnh.add(cnh);
-			}
+		} 
+		if(Utilities.validaCnh(String.valueOf(cnh)) && (!classeCnh.contains(cnh))) {	
+			classeCnh.add(cnh);
+		} 
 
-		}
-		
 	}
+
 	
 	public ArrayList<Locacao> getLocacoes() {
 		return locacoes;

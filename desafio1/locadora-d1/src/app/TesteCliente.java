@@ -9,7 +9,7 @@ public class TesteCliente {
 		
 		Cliente c1 = new Cliente("51982175925", "A");
 		
-		c1.addCnh("B");
+		c1.addCnh("A");
 		
 		System.out.println(c1.toString());
 		
