@@ -7,8 +7,8 @@ import java.lang.Exception;
 public class Cliente {
 	
 	private String celular;
-	private String[] classeCnh;
-	private String cnh;
+	private String classeCnh[];
+	//private String cnh;
 	//private ArrayList<String> classeCnh = new ArrayList<String>();
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 	
@@ -16,8 +16,17 @@ public class Cliente {
 	public Cliente(String celular, String cnh) {
 		
 		this.celular = celular;
-		classeCnh = new String[4];
-		classeCnh[1] = this.cnh;
+		this.classeCnh = new String[] {cnh};
+		
+		//if(Utilities.validarCnh(cnh)) {	
+			//String c = cnh;
+//			for(int i = 0; i < this.classeCnh.length; i++) {
+//				if(this.classeCnh[i] == null) {
+//					this.classeCnh[i] = cnh;
+//					break;
+//				}
+//			}
+		}
 		
 		
 //		if(!Utilities.validaCelular(celular)) {
@@ -31,7 +40,7 @@ public class Cliente {
 //		}else {
 //			this.classeCnh.add(cnh);
 //			}
-	}
+	//}
 	
 	@Override
 	public String toString() {

@@ -16,7 +16,7 @@ public class Utilities {
 	}
 	
 	public static boolean validarMotorista(Cliente c, Veiculo v) {
-		if(c.getCnh().contains(v.getCategoria()) || v.getCategoria().contains(c.getCnh())) {
+		if(c.getCnh().matches(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || c.getCnh().contains(v.getCategoria()) ) {
 			return true;
 		} else {
 			return false;

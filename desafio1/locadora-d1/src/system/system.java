@@ -128,7 +128,8 @@ private static Locadora locadora = new Locadora();
 							vehicle = locadora.localizarVeiculo(placa);
 							//String cat = vehicle.getCategoria();
 							
-							
+							if(!Utilities.validarMotorista(client, vehicle)) {
+									
 							if(!vehicle.isLocado()) { //comparativo entre cnh do cliente e cat do veiculo
 								int id = locadora.getLocacoes().size();
 								result =  new Locacao(id, datainicio, datafinal, vehicle, client);
@@ -139,6 +140,8 @@ private static Locadora locadora = new Locadora();
 								vehicle.setLocado(true);
 							}
 							else throw new Exception("Veículo está alugado");
+							} 
+							else throw new Exception("Cnh do Motorista não Compativel com Categoria do Veículo");
 						}
 						catch (Exception e){
 							System.out.println(e.getMessage());
@@ -220,7 +223,7 @@ private static Locadora locadora = new Locadora();
 				}
 				else ultimaLocacao = "";
 				
-				stringClientes+=("CNH: " + client.getCnh() + " Ceular: " + client.getCelular() +  ultimaLocacao + ";" );
+				stringClientes+=("CNH: " + client.getCnh() + " Celular: " + client.getCelular() +  ultimaLocacao + ";" );
 			}
 		}
 		else throw new Exception("Não existem clientes cadastrados!");

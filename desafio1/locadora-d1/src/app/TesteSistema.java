@@ -21,7 +21,7 @@ public class TesteSistema {
 				
 				system.cadastrarCliente("99999999999", "B");
 				system.cadastrarCliente("88888888888", "B");
-				//System.out.println("Cadastro realizado!");
+				//System.out.println(client.getCnh());
 				
 				try{
 					
