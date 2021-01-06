@@ -1,12 +1,21 @@
 package model;
 
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utilities {
 
 	public static boolean validarCnh(String cnh) {
 		if(cnh.matches("A") || cnh.matches("B") || cnh.matches("C") || cnh.matches("D") || String.valueOf(cnh).matches("^null|$")) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	public static boolean validarMotorista(Cliente c, Veiculo v) {
+		if(String.valueOf(c.getCnh()) == v.getCategoria() || String.valueOf(c.getCnh()).contains(v.getCategoria())) {
 			return true;
 		} else {
 			return false;
@@ -32,18 +41,18 @@ public class Utilities {
 		return false;
 	}
 	
-//	public static String formataData(Date data){
-//		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		String dataFormatada = fmt.format(data);
-//		
-//		return dataFormatada;
-//	}
-//	
-//	public static String formataDataDia(Date data){
-//		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-//		String dataFormatada = fmt.format(data);
-//		
-//		return dataFormatada;
-//	}
+	public static String formataData(Date data){
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String dataFormatada = fmt.format(data);
+		
+		return dataFormatada;
+	}
+	
+	public static String formataDataDia(Date data){
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+		String dataFormatada = fmt.format(data);
+		
+		return dataFormatada;
+	}
 	
 }

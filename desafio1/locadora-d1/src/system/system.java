@@ -126,7 +126,7 @@ private static Locadora locadora = new Locadora();
 						try{
 							vehicle = locadora.localizarVeiculo(placa);
 							
-							if(!vehicle.isLocado()){
+							if(!vehicle.isLocado() && (Utilities.validarMotorista(client, vehicle))) { //comparativo entre cnh do cliente e cat do veiculo
 								int id = locadora.getLocacoes().size();
 								result =  new Locacao(id, datainicio, datafinal, vehicle, client);
 								locadora.addLocacao(result);
