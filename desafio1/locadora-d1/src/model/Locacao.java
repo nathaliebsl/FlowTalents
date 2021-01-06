@@ -16,7 +16,7 @@ public class Locacao {
 	
 	
 
-	public Locacao(Date inicio, Date fim, Veiculo vehicle , Cliente client){
+	public Locacao(int id, Date inicio, Date fim, Veiculo vehicle , Cliente client){
 		this.id = sequencia++; //cria sequencia numérica a cada nova locação
 		datainicio = inicio;
 		datafim = fim;

@@ -5,7 +5,7 @@ package model;
 
 public class Utilities {
 
-	public static boolean validaCnh(String cnh) {
+	public static boolean validarCnh(String cnh) {
 		if(cnh.matches("A") || cnh.matches("B") || cnh.matches("C") || cnh.matches("D") || String.valueOf(cnh).matches("^null|$")) {
 			return true;
 		} else {
@@ -14,7 +14,7 @@ public class Utilities {
 		
 	}
 	
-	public static boolean validaCelular(String celular) {
+	public static boolean validarCelular(String celular) {
 		if(celular.matches("\\d{11}") || String.valueOf(celular).matches("^null|$")) {
 			return true;
 		} else {

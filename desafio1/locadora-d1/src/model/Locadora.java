@@ -47,7 +47,7 @@ public class Locadora {
 		return locacoes;
 	}
 	
-	public void setAlugueis(ArrayList<Locacao> locacoes) {
+	public void setLocacoes(ArrayList<Locacao> locacoes) {
 		this.locacoes = locacoes;
 	}
 	
@@ -84,7 +84,7 @@ public class Locadora {
 		locacoes.add(locacao);
 	}
 	
-	public Locacao localizarAluguel(int id) throws Exception{
+	public Locacao localizarLocacao(int id) throws Exception{
 		
 		for(Locacao loc: locacoes){
 			if(loc.getId() == id)

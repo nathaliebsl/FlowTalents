@@ -2,6 +2,7 @@ package model;
 
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class Veiculo {
@@ -11,8 +12,8 @@ public abstract class Veiculo {
 	private int anoFabricacao;
 	private String cor;
 	private String[] categoria;
-	//private boolean alugado;
-	//private ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
+	private boolean locado;
+	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 
 	
 	public Veiculo () { 
@@ -86,6 +87,34 @@ public abstract class Veiculo {
 		return Arrays.toString(this.categoria);
 	}
 
-
+	public boolean isLocado() {
+		return locado;
+	}
+	
+	public void setLocado(boolean locado) {
+		this.locado = locado;
+	}
+	
+	public ArrayList<Locacao> getLocacoes() {
+		return locacoes;
+	}
+	
+	public void setLocacoes(ArrayList<Locacao> locacoes) {
+		this.locacoes = locacoes;
+	}
+	
+	public void addLocacao(Locacao locacao){
+		locacoes.add(locacao);
+	}
+	
+	public Locacao localizarLocacao(int id) throws Exception{
+		
+		for(Locacao loc: locacoes){
+			if(loc.getId() == id)
+				return loc;
+		}
+		
+		throw new Exception("Locação não cadastrada!");
+	}
 	
 }

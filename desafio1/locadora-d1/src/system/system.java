@@ -13,7 +13,7 @@ private static Locadora locadora = new Locadora();
 		
 		Cliente client = null;
 		
-		if(Utilities.validaCelular(celular)){
+		if(Utilities.validarCelular(celular)){
 			try{
 				locadora.localizarCliente(celular);
 				throw new Exception("Cliente já cadastrado!");
@@ -106,56 +106,53 @@ private static Locadora locadora = new Locadora();
 	}
 	
 	
-	
-	
 
-//	public static Aluguel alugarCarro(String cpf, String placa, double diaria, Date datainicio, Date datafinal) 
-//																		throws SystemException{
-//		
-//		Aluguel result  = null;
-//		
-//		if(datafinal.getTime() > datainicio.getTime())
-//		{
-//			if(Util.validarCPF(cpf))
-//			{
-//				Cliente client = null;
-//				
-//				try{
-//					client = locadora.localizarCliente(cpf);
-//				
-//					if(Util.validarPlacaCarro(placa)){
-//						Carro car = null;
-//						
-//						try{
-//							car = locadora.localizarCarro(placa);
-//							
-//							if(!car.isAlugado()){
-//								int id = locadora.getAlugueis().size();
-//								result =  new Aluguel(id, datainicio, datafinal, diaria, car, client);
-//								locadora.addAluguel(result);
-//	
-//								car.addAluguel(result);
-//								client.addAluguel(result);
-//								car.setAlugado(true);
-//							}
-//							else throw new SystemException("Carro está alugado!");
-//						}
-//						catch (ModelException e){
-//							System.out.println(e.getMessage());
-//						}
-//						
-//					}else throw new SystemException("Placa Inválida!");
-//					
-//				}
-//				catch(ModelException e){
-//					System.out.println(e.getMessage());
-//				}
-//					
-//			}else throw new SystemException("CPF Inválido!");
-//		}else throw new SystemException("Data final menor que inicial!");
-//		
-//		return result;
-//	}
+	public static Locacao alugarVeiculo(Date datainicio, Date datafinal, String celular, String placa) throws Exception{
+		
+		Locacao result  = null;
+		
+		if(datafinal.getTime() > datainicio.getTime())
+		{
+			if(Utilities.validarCelular(celular))
+			{
+				Cliente client = null;
+				
+				try{
+					client = locadora.localizarCliente(celular);
+				
+					if(Utilities.validarPlaca(placa)){
+						Veiculo vehicle = null;
+						
+						try{
+							vehicle = locadora.localizarVeiculo(placa);
+							
+							if(!vehicle.isLocado()){
+								int id = locadora.getLocacoes().size();
+								result =  new Locacao(id, datainicio, datafinal, vehicle, client);
+								locadora.addLocacao(result);
+	
+								vehicle.addLocacao(result);
+								client.addLocacao(result);
+								vehicle.setLocado(true);
+							}
+							else throw new Exception("Veículo está alugado!");
+						}
+						catch (Exception e){
+							System.out.println(e.getMessage());
+						}
+						
+					}else throw new Exception("Placa Inválida!");
+					
+				}
+				catch(Exception e){
+					System.out.println(e.getMessage());
+				}
+					
+			}else throw new Exception("Celular Inválido!");
+		}else throw new Exception("Data final menor que inicial!");
+		
+		return result;
+	}
 //	
 //	
 //	public static void devolverCarro(String placa) throws SystemException{
