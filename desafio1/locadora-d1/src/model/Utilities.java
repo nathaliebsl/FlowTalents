@@ -1,6 +1,7 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Date;
 
 public class Utilities {
@@ -30,6 +31,18 @@ public class Utilities {
 			return false;
 		}
 		
+	}
+	
+	public static boolean validarAnoFabricacao(int ano){
+		
+		int anoAtual = Year.now().getValue();
+		int anoMinimo = anoAtual-20;
+		
+		if(ano > anoMinimo && ano <= anoAtual) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public static boolean validarPlaca(String placa){

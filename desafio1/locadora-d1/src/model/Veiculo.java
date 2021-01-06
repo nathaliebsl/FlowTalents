@@ -1,7 +1,5 @@
 package model;
 
-
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,21 +18,43 @@ public abstract class Veiculo {
 		
 	}
 	
-	public Veiculo (String placa, String marca) {
+	public Veiculo (String placa, String marca, int anoFabricacao, String cor) {
 		
-		if(placa != null) {
-			this.placa = placa;
-		} else {
-			System.out.println("Informe uma placa válida");
-			return;
-		}
+		this.placa = placa;
+		this.marca = marca;
+		this.anoFabricacao = anoFabricacao;
+		this.cor = cor;
 		
-		if(marca != null) {
-			this.marca = marca;
-		} else {
-			System.out.println("Informe uma marca válida");
-			return;
-		}
+//		if(Utilities.validarPlaca(placa)) {
+//			this.placa = placa;
+//		} else { 
+//			System.out.println("Informe uma placa válida - formato AAA####");
+//			return;
+//		}
+//		
+//		if(marca != null) {
+//			this.marca = marca.toUpperCase();
+//		} else {
+//			System.out.println("Informe uma marca válida");
+//			return;
+//		}
+//		
+//		if(Utilities.validarAnoFabricacao(anoFabricacao)) {
+//			this.anoFabricacao = anoFabricacao;
+//		} else {
+//			System.out.println("Informe um ano de fabricação válido");
+//			return;
+//		}
+//		
+//		if(cor != null) {
+//			this.cor = cor.toUpperCase();
+//			
+//		} else { 
+//			System.out.println("Informe uma cor válida");
+//			return;
+//		}
+		
+		locado = false;
 		
 	}
 	
@@ -51,10 +71,8 @@ public abstract class Veiculo {
 	}
 	
 	public void setAnoFabricacao(int anoFabricacao) {
-		int anoAtual = Year.now().getValue();
-		int anoMinimo = 2000;
 		
-		if(anoFabricacao > anoMinimo && anoFabricacao < anoAtual) {
+		if(Utilities.validarAnoFabricacao(anoFabricacao)) {
 			this.anoFabricacao = anoFabricacao;
 		} else {
 			System.out.println("Informe um ano válido");

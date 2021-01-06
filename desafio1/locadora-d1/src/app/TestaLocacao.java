@@ -1,16 +1,24 @@
 package app;
 
-//import model.Locacao;
-//import model.Veiculo;
-//import model.Carro;
-//import model.Cliente;
+//import model.*;
+//import system.*;
 
 public class TestaLocacao {
 	
 	public static void main(String[] args) throws Exception {
-
-		//Locacao l1 = new Locacao("2021/07/14, 00:22", "2021/07/16, 17:22", c1, cliente);
 		
-		//System.out.println(l1.getId());
+		
+//		Locacao loc = new Locacao()
+
+//		system.cadastrarCarro("CCC1111", "honda", 2020, "verde", 4, 'S', 'A', "eletrica");
+//		system.cadastrarCarro("CCC1111", "honda", 2020, "verde", 4, 'S', 'A', "eletrica");
+//		
+//		system.cadastrarCliente("99999999999", "A");
+//		
+//		system.locarVeiculo('2021/2/21', '2021/01/21 12:30:00', "99999999999", "CCC1111");
+//		
+//		
+//		Utilities.formataData("21/12");
+//		
 	}
 }

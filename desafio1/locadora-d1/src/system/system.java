@@ -29,7 +29,7 @@ private static Locadora locadora = new Locadora();
 	}
 	
 	
-	public static Carro cadastrarCarro(String placa, String marca, int portas, char ac, char cambio, String direcao) throws Exception{
+	public static Carro cadastrarCarro(String placa, String marca, int anoFabricacao, String cor, int portas, char ac, char cambio, String direcao) throws Exception{
 		
 		Carro car = null;
 		
@@ -39,16 +39,16 @@ private static Locadora locadora = new Locadora();
 				throw new Exception("Veiculo já cadastrado!");
 			}
 			catch (Exception e){
-				car = new Carro(placa, marca, portas, ac, cambio, direcao);
+				car = new Carro(placa, marca, anoFabricacao, cor, portas, ac, cambio, direcao);
 				locadora.addVeiculo(car);
 			}
 		}
-		else throw new Exception("Placa Inválida!");
+		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
 		return null;
 	}
 	
-	public static Moto cadastrarMoto(String placa, String marca, int cilindradas) throws Exception{
+	public static Moto cadastrarMoto(String placa, String marca, int anoFabricacao, String cor, int cilindradas) throws Exception{
 		
 		Moto bike = null;
 		
@@ -58,16 +58,16 @@ private static Locadora locadora = new Locadora();
 				throw new Exception("Veiculo já cadastrado!");
 			}
 			catch (Exception e){
-				bike = new Moto(placa, marca, cilindradas);
+				bike = new Moto(placa, marca, anoFabricacao, cor, cilindradas);
 				locadora.addVeiculo(bike);
 			}
 		}
-		else throw new Exception("Placa Inválida!");
+		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
 		return null;
 	}
 	
-	public static Onibus cadastrarOnibus(String placa, String marca, int assentos) throws Exception{
+	public static Onibus cadastrarOnibus(String placa, String marca, int anoFabricacao, String cor, int assentos) throws Exception{
 		
 		Onibus bus = null;
 		
@@ -77,16 +77,16 @@ private static Locadora locadora = new Locadora();
 				throw new Exception("Veiculo já cadastrado!");
 			}
 			catch (Exception e){
-				bus = new Onibus(placa, marca, assentos);
+				bus = new Onibus(placa, marca, anoFabricacao, cor, assentos);
 				locadora.addVeiculo(bus);
 			}
 		}
-		else throw new Exception("Placa Inválida!");
+		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
 		return null;
 	}
 	
-	public static Caminhao cadastrarCaminhao(String placa, String marca, int capacidade) throws Exception{
+	public static Caminhao cadastrarCaminhao(String placa, String marca, int anoFabricacao, String cor, int capacidade) throws Exception{
 		
 		Caminhao truck = null;
 		
@@ -96,11 +96,11 @@ private static Locadora locadora = new Locadora();
 				throw new Exception("Veiculo já cadastrado!");
 			}
 			catch (Exception e){
-				truck = new Caminhao(placa, marca, capacidade);
+				truck = new Caminhao(placa, marca, anoFabricacao, cor, capacidade);
 				locadora.addVeiculo(truck);
 			}
 		}
-		else throw new Exception("Placa Inválida!");
+		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
 		return null;
 	}
@@ -135,7 +135,7 @@ private static Locadora locadora = new Locadora();
 								client.addLocacao(result);
 								vehicle.setLocado(true);
 							}
-							else throw new Exception("Veículo está alugado!");
+							else throw new Exception("Veículo está alugado");
 						}
 						catch (Exception e){
 							System.out.println(e.getMessage());
@@ -200,96 +200,96 @@ private static Locadora locadora = new Locadora();
 		}else throw new Exception("Placa inválida!");
 		
 	}
-//	
-//	
-//	public static String listarClientes() throws SystemException{
-//		String ultimoAluguel = "";
-//		String stringClientes = "";
-//		ArrayList<Cliente> listaClientes = locadora.getClientes();
-//		
-//		if(!listaClientes.isEmpty()){
-//			for(Cliente client: listaClientes){
-//				ArrayList<Aluguel> listaAlugueis = client.getAlugueis();
-//				
-//				if(!listaAlugueis.isEmpty()){
-//					Aluguel alug = listaAlugueis.get(listaAlugueis.size()-1);
-//					ultimoAluguel = " Último aluguel: " + Util.formataData(alug.getDatainicio());
-//				}
-//				else ultimoAluguel = "";
-//				
-//				stringClientes+=("CPF: " + client.getCpf() + " Nome: " + client.getNome() +  ultimoAluguel + ";" );
-//			}
-//		}
-//		else throw new SystemException("Não existem clientes cadastrados!");
-//		
-//		return stringClientes;
-//	}
-//	
-//	
-//	public static String listarCarros() throws SystemException{
-//		String stringCarros = "";
-//		ArrayList<Carro> listaCarros = locadora.getCarros();
-//		
-//		if(!listaCarros.isEmpty()){
-//			for(Carro car: listaCarros){
-//				ArrayList<Aluguel> listaAlugueis = car.getAlugueis();
-//				String nomeCliente = car.isAlugado() ? " Cliente: " + listaAlugueis.get(listaAlugueis.size()-1).getCliente().getNome() : "";
-//				stringCarros+="Placa:" + car.getPlaca() + " Modelo:" + car.getModelo() + nomeCliente + ";";
-//			}
-//		}
-//		else throw new SystemException("Não existem carros cadastrados!");
-//		
-//		return stringCarros;
-//	}
-//	
-//	public static String listarAlugueisFinalizados() throws SystemException{
-//		String stringAlugueis = "";
-//		ArrayList<Aluguel> listaAlugueis = locadora.getAlugueis();
-//		int days = 0;
-//		
-//		if(!listaAlugueis.isEmpty()){
-//			for(Aluguel alug: listaAlugueis){
-//				if(alug.isFinalizado()){
-//					String dataInit = Util.formataData(alug.getDatainicio());
-//					String dataFim = Util.formataData(alug.getDatafim());
-//					
-//					days += Integer.parseInt(dataFim.split("/")[0]) - Integer.parseInt(dataInit.split("/")[0]);
-//					
-//					stringAlugueis+="ID:" + alug.getId() + " Carro:" + alug.getCarro().getPlaca() + " Cliente:" + 
-//							alug.getCliente().getNome()  + " Valor:" + alug.getValor() + " Inicio: " + 
-//							dataInit + " Fim: "  + dataFim + " Quantidade de dias de todos os alugueis: " + days + ";";
-//				}
-//			}
-//			
-//			if(stringAlugueis == "") throw new SystemException("Não existem alugueis finalizados!");
-//		}
-//		else throw new SystemException("Não exisem alugueis cadastrados!");
-//		
-//		return stringAlugueis;
-//	}
-//	
-//	public static String listarAlugueisHoje() throws SystemException{
-//		String alugueisHoje = "";
-//		ArrayList<Aluguel> listaAlugueis = locadora.getAlugueis();
-//		Date today = new Date();
-//		
-//		if(!listaAlugueis.isEmpty()){
-//			for(Aluguel alug: listaAlugueis){
-//				Date fim = alug.getDatafim();
-//				
-//				if( Util.formataDataDia(today).equals(Util.formataDataDia(fim) ) && !alug.isFinalizado()){
-//					alugueisHoje+="ID:" + alug.getId() + " Carro: " + alug.getCarro().getPlaca() + " Cliente:" + 
-//							alug.getCliente().getNome();
-//				}
-//			}
-//			
-//			if(alugueisHoje.equals("")) 
-//				throw new SystemException("Não existem alugueis a serem finalizados hoje!");
-//			
-//		}else throw new SystemException("Não existem alugueis cadastrados!");
-//		
-//		return alugueisHoje;
-//	}
+	
+	
+	public static String listarClientes() throws Exception{
+		String ultimaLocacao = "";
+		String stringClientes = "";
+		ArrayList<Cliente> listaClientes = locadora.getClientes();
+		
+		if(!listaClientes.isEmpty()){
+			for(Cliente client: listaClientes){
+				ArrayList<Locacao> listaLocacoes = client.getLocacoes();
+				
+				if(!listaLocacoes.isEmpty()){
+					Locacao loc = listaLocacoes.get(listaLocacoes.size()-1);
+					ultimaLocacao = " Última locação: " + Utilities.formataData(loc.getDatainicio());
+				}
+				else ultimaLocacao = "";
+				
+				stringClientes+=("CNH: " + client.getCnh() + " Ceular: " + client.getCelular() +  ultimaLocacao + ";" );
+			}
+		}
+		else throw new Exception("Não existem clientes cadastrados!");
+		
+		return stringClientes;
+	}
+	
+	
+	public static String listarVeiculos() throws Exception{
+		String stringVeiculos = "";
+		ArrayList<Veiculo> listaVeiculos = locadora.getVeiculos();
+		
+		if(!listaVeiculos.isEmpty()){
+			for(Veiculo vehicle: listaVeiculos){
+				ArrayList<Locacao> listaLocacoes = vehicle.getLocacoes();
+				String idCliente = vehicle.isLocado() ? " Cliente: " + listaLocacoes.get(listaLocacoes.size()-1).getCliente().getCelular() : "";
+				stringVeiculos+="Placa:" + vehicle.getPlaca() + " Modelo:" + vehicle.getMarca() + idCliente + ";";
+			}
+		}
+		else throw new Exception("Não existem carros cadastrados!");
+		
+		return stringVeiculos;
+	}
+	
+	public static String listarLocacoesFinalizadas() throws Exception{
+		String stringLocacoes = "";
+		ArrayList<Locacao> listaLocacoes = locadora.getLocacoes();
+		int days = 0;
+		
+		if(!listaLocacoes.isEmpty()){
+			for(Locacao loc: listaLocacoes){
+				if(loc.isFinalizado()){
+					String dataInit = Utilities.formataData(loc.getDatainicio());
+					String dataFim = Utilities.formataData(loc.getDatafim());
+					
+					days += Integer.parseInt(dataFim.split("/")[0]) - Integer.parseInt(dataInit.split("/")[0]);
+					
+					stringLocacoes+="ID:" + loc.getId() + " Veiculo:" + loc.getVeiculo().getPlaca() + " Cliente:" + 
+							loc.getCliente().getCelular()  + " Inicio: " + 
+							dataInit + " Fim: "  + dataFim + " Quantidade de dias de todos os alugueis: " + days + ";";
+				}
+			}
+			
+			if(stringLocacoes == "") throw new Exception("Não existem locacoes finalizadas");
+		}
+		else throw new Exception("Não exisem locacoes cadastradas!");
+		
+		return stringLocacoes;
+	}
+	
+	public static String listarLocacoesHoje() throws Exception{
+		String locacoesHoje = "";
+		ArrayList<Locacao> listaLocacoes = locadora.getLocacoes();
+		Date today = new Date();
+		
+		if(!listaLocacoes.isEmpty()){
+			for(Locacao loc: listaLocacoes){
+				Date fim = loc.getDatafim();
+				
+				if( Utilities.formataDataDia(today).equals(Utilities.formataDataDia(fim) ) && !loc.isFinalizado()){
+					locacoesHoje+="ID:" + loc.getId() + " Carro: " + loc.getVeiculo().getPlaca() + " Cliente:" + 
+							loc.getCliente().getCelular();
+				}
+			}
+			
+			if(locacoesHoje.equals("")) 
+				throw new Exception("Não existem alugueis a serem finalizados hoje!");
+			
+		}else throw new Exception("Não existem alugueis cadastrados!");
+		
+		return locacoesHoje;
+	}
 	
 
 

@@ -7,8 +7,9 @@ public class Onibus extends Veiculo {
 	private int assentos;
 	private String[] catOnibus = {"D"};
 
-	public Onibus(String placa, String marca, int assentos) {
-		super(placa, marca);
+	public Onibus(String placa, String marca, int anoFabricacao, String cor, int assentos) {
+		super(placa, marca, anoFabricacao, cor);
+		this.assentos = assentos;
 		
 	}
 
@@ -27,9 +28,9 @@ public class Onibus extends Veiculo {
 		return Arrays.toString(this.catOnibus);
 	}
 	
-//	@Override
-//	public String toString() {
-//		return "Onibus [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ......]";
-//	}
+	@Override
+	public String toString() {
+		return "Onibus [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ano de fabricação=" + this.getAnoFabricacao() + ", cor= " + this.getCor() + ", assentos=" + this.getAssentos() + "]";
+	}
 
 }

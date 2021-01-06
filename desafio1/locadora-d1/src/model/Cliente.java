@@ -6,11 +6,15 @@ import java.lang.Exception;
 public class Cliente {
 	
 	private String celular;
+	private String cnh;
 	private ArrayList<String> classeCnh = new ArrayList<String>();
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 	
 	
 	public Cliente(String celular, String cnh) {
+		
+		this.celular = celular;
+		classeCnh.add(this.cnh);
 		
 //		if(!Utilities.validaCelular(celular)) {
 //			throw new IllegalArgumentException("Celular deve ser válido - Formato: DDNNNNNNNNN");

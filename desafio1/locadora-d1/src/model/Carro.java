@@ -11,16 +11,19 @@ public class Carro extends Veiculo {
 	private String[] catCarro = {"A", "C", "D"};
 	
 	
-	public Carro (String placa, String marca, int portas, char ac, char cambio, String direcao) {
-		super(placa, marca);
-		
-	
+	public Carro (String placa, String marca, int anoFabricacao, String cor, int portas, char ac, char cambio, String direcao) throws Exception {
+		super(placa, marca, anoFabricacao, cor);
+		this.portas = portas;
+		this.ac = ac;
+		this.cambio = cambio;
+		this.direcao = direcao;
+
 	}
 
 	
 	@Override
 	public String getCategoria() {
-		return Arrays.toString(this.catCarro);
+		return Arrays.toString(catCarro);
 	}
 	
 	
@@ -59,7 +62,7 @@ public class Carro extends Veiculo {
 	
 	@Override
 	public String toString() {
-		return "Carro [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ......]";
+		return "Carro [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ano de fabricação=" + this.getAnoFabricacao() + ", cor= " + this.getCor() +  ", portas=" + this.getPortas() + ", AC=" + this.getAc() + ", cambio=" + this.getCambio() + ", direção=" + this.getDirecao() +" ]";
 	}
 	
 
