@@ -43,10 +43,10 @@ public class Cliente {
 	}
 	
 	public void addCnh(String cnh) {
-		if(!Utilities.validaCnh(String.valueOf(cnh))) {
+		if(!Utilities.validarCnh(String.valueOf(cnh))) {
 			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
 		} 
-		if(Utilities.validaCnh(String.valueOf(cnh)) && (!classeCnh.contains(cnh))) {	
+		if(Utilities.validarCnh(String.valueOf(cnh)) && (!classeCnh.contains(cnh))) {	
 			classeCnh.add(cnh);
 		} 
 
@@ -70,15 +70,13 @@ public class Cliente {
 		}
 	}
 	
-//	public Locacao localizarLocacao(int id) { //throws ModelException
-//		
-//		for(Locacao locacao: locacoes){
-//			if(locacao.getId() == id)
-//				return locacao;
-//		} throw (err)
-//		
-//		//throw new ModelException("Aluguel não cadastrado!");
-//	}
+	public Locacao localizarLocacao(int id) throws Exception {
+		
+		for(Locacao locacao: locacoes){
+			if(locacao.getId() == id)
+				return locacao;
+		} throw new Exception("Aluguel não cadastrado!");
+	}
 
 
 }

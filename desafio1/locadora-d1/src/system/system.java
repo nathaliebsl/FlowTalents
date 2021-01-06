@@ -107,7 +107,7 @@ private static Locadora locadora = new Locadora();
 	
 	
 
-	public static Locacao alugarVeiculo(Date datainicio, Date datafinal, String celular, String placa) throws Exception{
+	public static Locacao locarVeiculo(Date datainicio, Date datafinal, String celular, String placa) throws Exception{
 		
 		Locacao result  = null;
 		
@@ -153,48 +153,53 @@ private static Locadora locadora = new Locadora();
 		
 		return result;
 	}
-//	
-//	
-//	public static void devolverCarro(String placa) throws SystemException{
-//		
-//		if(Util.validarPlacaCarro(placa)){
-//			
-//			Carro car = null;
-//			
-//			try{
-//				
-//				car = locadora.localizarCarro(placa);
-//				
-//				if(car.isAlugado())
-//				{
-//					
-//					Date data = new Date();
-//					ArrayList<Aluguel> listAlugueis = car.getAlugueis();
-//					Aluguel aluguel = listAlugueis.get(listAlugueis.size()-1);
-//					
-//					long di = aluguel.getDatainicio().getTime()/86400000;
-//					long df = data.getTime()/86400000;
-//					double diaria = aluguel.getDiaria();
-//					
-//					double newValor = (df-di) <= 0 ?  (di-df)*diaria : (df-di)*2*diaria + aluguel.getValor();
-//					
-//					/* Paga no minimo uma diária caso o carro seja devolvido antes de 24h
-//					 * Preço mínimo do aluguel
-//					 */
-//					aluguel.setValor(newValor > 0 ? newValor : diaria);
-//					aluguel.setFinalizado(true);
-//					car.setAlugado(false);
-//				}
-//				else throw new SystemException("Carro não está alugado!");
-//				
-//			}
-//			catch (ModelException e){
-//				throw new SystemException(e.getMessage());
-//			}
-//			
-//		}else throw new SystemException("Placa inválida!");
-//		
-//	}
+	
+	
+	public static void encerrarLocacao(String placa) throws Exception{
+		
+		if(Utilities.validarPlaca(placa)){
+			
+			Veiculo vehicle = null;
+			
+			try{
+				
+				vehicle = locadora.localizarVeiculo(placa);
+				
+				if(vehicle.isLocado())
+				{
+					
+					Date data = new Date();
+					ArrayList<Locacao> listLocacoes = vehicle.getLocacoes();
+					Locacao loc = listLocacoes.get(listLocacoes.size()-1);
+					
+					long di = loc.getDatainicio().getTime()/86400000;
+					long now = data.getTime()/86400000;
+					long df = loc.getDatafim().getTime()/86400000;
+					
+					
+					
+					//double diaria = aluguel.getDiaria();
+					
+					//double newValor = (df-di) <= 0 ?  (di-df)*diaria : (df-di)*2*diaria + aluguel.getValor();
+					
+					/* Paga no minimo uma diária caso o carro seja devolvido antes de 24h
+					 * Preço mínimo do aluguel
+					 */
+					//aluguel.setValor(newValor > 0 ? newValor : diaria);
+					loc.setFinalizado(true);
+					vehicle.setLocado(false);
+					System.out.println("Locação do veículo " + vehicle.toString() + "encerrada!"); //será que puxa os dados do veículo?
+				}
+				else throw new Exception("Veículo não está alugado!");
+				
+			}
+			catch (Exception e){
+				throw new Exception(e.getMessage());
+			}
+			
+		}else throw new Exception("Placa inválida!");
+		
+	}
 //	
 //	
 //	public static String listarClientes() throws SystemException{
