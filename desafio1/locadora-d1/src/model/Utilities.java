@@ -16,13 +16,22 @@ public class Utilities {
 	}
 	
 	public static boolean validarMotorista(Cliente c, Veiculo v) {
-		if(String.valueOf(c.getCnh()) == v.getCategoria() || String.valueOf(c.getCnh()).contains(v.getCategoria())) {
+		if(c.getCnh().contains(v.getCategoria()) || v.getCategoria().contains(c.getCnh())) {
 			return true;
 		} else {
 			return false;
 		}
 		
 	}
+	
+//	public static boolean validarMotorista(Cliente c, Veiculo v) {
+//		if(String.valueOf(c.getCnh()) == v.getCategoria() || String.valueOf(c.getCnh()).contains(v.getCategoria())) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//		
+//	}
 	
 	public static boolean validarCelular(String celular) {
 		if(celular.matches("\\d{11}") || String.valueOf(celular).matches("^null|$")) {

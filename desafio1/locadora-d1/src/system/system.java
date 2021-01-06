@@ -119,14 +119,17 @@ private static Locadora locadora = new Locadora();
 				
 				try{
 					client = locadora.localizarCliente(celular);
+					//String cnh = client.getCnh();
 				
 					if(Utilities.validarPlaca(placa)){
 						Veiculo vehicle = null;
 						
 						try{
 							vehicle = locadora.localizarVeiculo(placa);
+							//String cat = vehicle.getCategoria();
 							
-							if(!vehicle.isLocado() && (Utilities.validarMotorista(client, vehicle))) { //comparativo entre cnh do cliente e cat do veiculo
+							
+							if(!vehicle.isLocado()) { //comparativo entre cnh do cliente e cat do veiculo
 								int id = locadora.getLocacoes().size();
 								result =  new Locacao(id, datainicio, datafinal, vehicle, client);
 								locadora.addLocacao(result);

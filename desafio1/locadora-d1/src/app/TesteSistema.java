@@ -25,14 +25,14 @@ public class TesteSistema {
 				
 				try{
 					
-					GregorianCalendar calendario = new GregorianCalendar(2021, 1, 1, 00, 00);
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-					system.locarVeiculo(format.parse("2021-01-01"),  format.parse("2021-01-30"), "99999999999", "CCC1111");
-					system.locarVeiculo(calendario.getTime(), format.parse("2021-01-14"),  "88888888888", "CCC2222");
+					GregorianCalendar calendario = new GregorianCalendar();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					system.locarVeiculo(calendario.getTime(), format.parse("2022-01-30 15:00"), "99999999999", "CCC1111");
+					system.locarVeiculo(calendario.getTime(), format.parse("2022-01-14 12:00"),  "88888888888", "CCC2222");
 					system.encerrarLocacao("CCC2222");
 					String loc = system.listarLocacoesFinalizadas();
 					System.out.println("Finalizados=" + loc);
-					system.locarVeiculo(calendario.getTime(), format.parse("2021-01-14"),  "88888888888", "CCC2222");
+					system.locarVeiculo(calendario.getTime(), format.parse("2021-01-31 12:00"),  "88888888888", "CCC2222");
 					loc = system.listarClientes();
 					System.out.println(loc);
 					loc = system.listarVeiculos();

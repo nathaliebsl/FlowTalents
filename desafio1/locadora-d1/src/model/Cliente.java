@@ -1,20 +1,24 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.lang.Exception;
 
 public class Cliente {
 	
 	private String celular;
+	private String[] classeCnh;
 	private String cnh;
-	private ArrayList<String> classeCnh = new ArrayList<String>();
+	//private ArrayList<String> classeCnh = new ArrayList<String>();
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 	
 	
 	public Cliente(String celular, String cnh) {
 		
 		this.celular = celular;
-		classeCnh.add(this.cnh);
+		classeCnh = new String[4];
+		classeCnh[1] = this.cnh;
+		
 		
 //		if(!Utilities.validaCelular(celular)) {
 //			throw new IllegalArgumentException("Celular deve ser válido - Formato: DDNNNNNNNNN");
@@ -42,17 +46,34 @@ public class Cliente {
 		this.celular = celular;
 	}
 	
-	public ArrayList<String> getCnh() {
-		return classeCnh;
+//	public ArrayList<String> getCnh() {
+//		return classeCnh;
+//	}
+//	
+//	public void addCnh(String cnh) {
+//		if(!Utilities.validarCnh(String.valueOf(cnh))) {
+//			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
+//		} 
+//		if(Utilities.validarCnh(String.valueOf(cnh)) && (!classeCnh.contains(cnh))) {	
+//			classeCnh.add(cnh);
+//		} 
+//
+//	}
+	
+	public String getCnh() {
+		return Arrays.toString(classeCnh);
 	}
 	
 	public void addCnh(String cnh) {
-		if(!Utilities.validarCnh(String.valueOf(cnh))) {
+		if(!Utilities.validarCnh(cnh)) {
 			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
 		} 
-		if(Utilities.validarCnh(String.valueOf(cnh)) && (!classeCnh.contains(cnh))) {	
-			classeCnh.add(cnh);
-		} 
+		if(Utilities.validarCnh(cnh)) {	
+			int i;
+			for(i = 0; i < classeCnh.length; i++) {
+			classeCnh[i] = cnh;
+			} 
+		}
 
 	}
 
