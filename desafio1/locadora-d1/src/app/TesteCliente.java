@@ -1,18 +1,19 @@
 package app;
 
-import model.Cliente;
-
+import system.system;
+//import model.Locadora;
 
 public class TesteCliente {
 	
 	public static void main(String[] args) throws Exception {
-		
-		Cliente c1 = new Cliente("51982175925", "A");
-		
-		c1.addCnh("A");
-		
-		System.out.println(c1.toString());
-		
+	
+
+	system.cadastrarCliente("51982175925", "A");
+	system.cadastrarCliente("51982175925", "B");
+	
+	
+	
+	
 		
 	}
 

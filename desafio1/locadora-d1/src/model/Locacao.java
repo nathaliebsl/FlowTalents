@@ -2,24 +2,26 @@ package model;
 
 import java.util.Date;
 
+//precisa alguns ajustes ainda para compilar.
 
 public class Locacao {
 	
-	private int id; //criar numero aleatorio (sequencia numerica)
+	private static int sequencia = 0;
+	private int id;
 	private Date datainicio;
 	private Date datafim;
 	private boolean finalizado;
 	private Veiculo veiculo;
 	private Cliente cliente;
 	
-
+	
 
 	public Locacao(Date inicio, Date fim, Veiculo vehicle , Cliente client){
-		//double diffTime = (fim.getTime() - inicio.getTime())/86400000; 
+		this.id = sequencia++; //cria sequencia numérica a cada nova locação
 		datainicio = inicio;
 		datafim = fim;
-		veiculo = vehicle;
-		cliente = client;
+		veiculo = vehicle; //preciso puxar do Bc de veiculos?
+		cliente = client; //preciso puxar do Bc de cliente?
 		finalizado = false;
 	}
 	
@@ -33,11 +35,6 @@ public class Locacao {
 	public int getId() {
 		return id;
 	}
-	
-//criar numero aleatorio - acho que nao precisa de set
-//	public void setId(int id) {
-//		this.id = id;
-//	}
 	
 	public Date getDatainicio() {
 		return datainicio;

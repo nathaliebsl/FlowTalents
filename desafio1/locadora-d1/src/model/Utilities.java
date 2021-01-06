@@ -1,5 +1,8 @@
 package model;
 
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+
 public class Utilities {
 
 	public static boolean validaCnh(String cnh) {
@@ -20,7 +23,27 @@ public class Utilities {
 		
 	}
 	
+	public static boolean validarPlaca(String placa){
+		
+		if (placa.matches("[A-Za-z]{3}\\d{4}")){
+			return true;
+		}
+		
+		return false;
+	}
+	
+//	public static String formataData(Date data){
+//		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//		String dataFormatada = fmt.format(data);
+//		
+//		return dataFormatada;
+//	}
+//	
+//	public static String formataDataDia(Date data){
+//		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+//		String dataFormatada = fmt.format(data);
+//		
+//		return dataFormatada;
+//	}
+	
 }
-
-
-//(cnh.matches("A,B") || cnh.matches("B,A") || cnh.matches("A,C") || cnh.matches("C,A") || cnh.matches("A,D") ||cnh.matches("D,A") ||

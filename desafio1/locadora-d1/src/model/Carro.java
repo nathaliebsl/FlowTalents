@@ -5,17 +5,13 @@ import java.util.Arrays;
 public class Carro extends Veiculo {
 	
 	private int portas;
-	private String ac;
-	private String cambio;
+	private char ac;
+	private char cambio;
 	private String direcao;
 	private String[] catCarro = {"A", "C", "D"};
 	
 	
-	public Carro() {
-		
-	}
-	
-	public Carro (String placa, String marca) {
+	public Carro (String placa, String marca, int portas, char ac, char cambio, String direcao) {
 		super(placa, marca);
 		
 	
@@ -36,19 +32,19 @@ public class Carro extends Veiculo {
 		this.portas = portas;
 	}
 
-	public String getAc() {
+	public char getAc() {
 		return ac;
 	}
 
-	public void setAc(String ac) {
+	public void setAc(char ac) {
 		this.ac = ac;
 	}
 
-	public String getCambio() {
+	public char getCambio() {
 		return cambio;
 	}
 
-	public void setCambio(String cambio) {
+	public void setCambio(char cambio) {
 		this.cambio = cambio;
 	}
 

@@ -12,17 +12,17 @@ public class Cliente {
 	
 	public Cliente(String celular, String cnh) {
 		
-		if(!Utilities.validaCelular(celular)) {
-			throw new IllegalArgumentException("Celular deve ser válido - Formato: DDNNNNNNNNN");
-		} else {
-			this.celular = celular;
-		}
-		
-		if(!Utilities.validaCnh(cnh)) {
-			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
-		}else {
-			this.classeCnh.add(cnh);
-			}
+//		if(!Utilities.validaCelular(celular)) {
+//			throw new IllegalArgumentException("Celular deve ser válido - Formato: DDNNNNNNNNN");
+//		} else {
+//			this.celular = celular;
+//		}
+//		
+//		if(!Utilities.validaCnh(cnh)) {
+//			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
+//		}else {
+//			this.classeCnh.add(cnh);
+//			}
 	}
 	
 	@Override
