@@ -2,8 +2,11 @@ package system;
 
 import model.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class system {
 	
@@ -21,6 +24,7 @@ private static Locadora locadora = new Locadora();
 			catch (Exception e){
 				client = new Cliente(celular, cnh);
 				locadora.addCliente(client);
+
 			}
 		}
 		else throw new Exception("Celular Inválido!");
@@ -107,7 +111,7 @@ private static Locadora locadora = new Locadora();
 	
 	
 
-	public static Locacao locarVeiculo(Date datainicio, Date datafinal, String celular, String placa) throws Exception{
+	public static Locacao locarVeiculo(String celular, String placa, Date datainicio, Date datafinal) throws Exception{
 		
 		Locacao result  = null;
 		
@@ -119,18 +123,20 @@ private static Locadora locadora = new Locadora();
 				
 				try{
 					client = locadora.localizarCliente(celular);
-					//String cnh = client.getCnh();
+				
 				
 					if(Utilities.validarPlaca(placa)){
 						Veiculo vehicle = null;
 						
 						try{
 							vehicle = locadora.localizarVeiculo(placa);
-							//String cat = vehicle.getCategoria();
 							
-							if(!Utilities.validarMotorista(client, vehicle)) {
+							
+							if(Utilities.validarMotorista(client, vehicle)) {
+								
+								//comparativo entre cnh do cliente e cat do veiculo
 									
-							if(!vehicle.isLocado()) { //comparativo entre cnh do cliente e cat do veiculo
+							if(!vehicle.isLocado()) { 
 								int id = locadora.getLocacoes().size();
 								result =  new Locacao(id, datainicio, datafinal, vehicle, client);
 								locadora.addLocacao(result);
@@ -138,6 +144,7 @@ private static Locadora locadora = new Locadora();
 								vehicle.addLocacao(result);
 								client.addLocacao(result);
 								vehicle.setLocado(true);
+								System.out.println("Efetuada Locação do veículo " + vehicle.toString() + " \n  " + client.toString() + "\n");
 							}
 							else throw new Exception("Veículo está alugado");
 							} 
@@ -174,27 +181,22 @@ private static Locadora locadora = new Locadora();
 				if(vehicle.isLocado())
 				{
 					
-					Date data = new Date();
+//					Date data = new Date();
+					GregorianCalendar calendario = new GregorianCalendar();
+					
 					ArrayList<Locacao> listLocacoes = vehicle.getLocacoes();
 					Locacao loc = listLocacoes.get(listLocacoes.size()-1);
 					
-					long di = loc.getDatainicio().getTime()/86400000;
-					long now = data.getTime()/86400000;
-					long df = loc.getDatafim().getTime()/86400000;
+//					Date di = loc.getDatainicio();
+					Date now = calendario.getTime();
+//					Date df = loc.getDatafim();
+//					
+//					if(df.after(now)) 
 					
 					
-					
-					//double diaria = aluguel.getDiaria();
-					
-					//double newValor = (df-di) <= 0 ?  (di-df)*diaria : (df-di)*2*diaria + aluguel.getValor();
-					
-					/* Paga no minimo uma diária caso o carro seja devolvido antes de 24h
-					 * Preço mínimo do aluguel
-					 */
-					//aluguel.setValor(newValor > 0 ? newValor : diaria);
 					loc.setFinalizado(true);
 					vehicle.setLocado(false);
-					System.out.println("Locação do veículo " + vehicle.toString() + "encerrada!"); //será que puxa os dados do veículo?
+					System.out.println("ENCERRADO: Locação do veículo " + vehicle.toString() + " @ " + now +  "\n"); //será que puxa os dados do veículo?
 				}
 				else throw new Exception("Veículo não está alugado!");
 				
@@ -223,7 +225,7 @@ private static Locadora locadora = new Locadora();
 				}
 				else ultimaLocacao = "";
 				
-				stringClientes+=("CNH: " + client.getCnh() + " Celular: " + client.getCelular() +  ultimaLocacao + ";" );
+				stringClientes+=("CNH: " + client.getCnh() + " Celular: " + client.getCelular() +  ultimaLocacao + ";\n" );
 			}
 		}
 		else throw new Exception("Não existem clientes cadastrados!");
@@ -239,8 +241,8 @@ private static Locadora locadora = new Locadora();
 		if(!listaVeiculos.isEmpty()){
 			for(Veiculo vehicle: listaVeiculos){
 				ArrayList<Locacao> listaLocacoes = vehicle.getLocacoes();
-				String idCliente = vehicle.isLocado() ? " Cliente: " + listaLocacoes.get(listaLocacoes.size()-1).getCliente().getCelular() : "";
-				stringVeiculos+="Placa:" + vehicle.getPlaca() + " Modelo:" + vehicle.getMarca() + idCliente + ";";
+				String idCliente = vehicle.isLocado() ? " Veículo está locado para Cliente: " + listaLocacoes.get(listaLocacoes.size()-1).getCliente().getCelular() : "";
+				stringVeiculos+="Placa:" + vehicle.getPlaca() + " Modelo:" + vehicle.getMarca() + idCliente + ";\n";
 			}
 		}
 		else throw new Exception("Não existem carros cadastrados!");
@@ -261,9 +263,9 @@ private static Locadora locadora = new Locadora();
 					
 					days += Integer.parseInt(dataFim.split("/")[0]) - Integer.parseInt(dataInit.split("/")[0]);
 					
-					stringLocacoes+="ID:" + loc.getId() + " Veiculo:" + loc.getVeiculo().getPlaca() + " Cliente:" + 
+					stringLocacoes+=" ID:" + loc.getId() + " Veiculo:" + loc.getVeiculo().getPlaca() + " Cliente:" + 
 							loc.getCliente().getCelular()  + " Inicio: " + 
-							dataInit + " Fim: "  + dataFim + " Quantidade de dias de todos os alugueis: " + days + ";";
+							dataInit + " Fim: "  + dataFim + " Quantidade de dias de todos os alugueis: " + days + ";\n";
 				}
 			}
 			

@@ -21,18 +21,18 @@ public class TesteSistema {
 				
 				system.cadastrarCliente("99999999999", "B");
 				system.cadastrarCliente("88888888888", "B");
-				//System.out.println(client.getCnh());
 				
 				try{
 					
 					GregorianCalendar calendario = new GregorianCalendar();
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-					system.locarVeiculo(calendario.getTime(), format.parse("2022-01-30 15:00"), "99999999999", "CCC1111");
-					system.locarVeiculo(calendario.getTime(), format.parse("2022-01-14 12:00"),  "88888888888", "CCC2222");
+					system.locarVeiculo("99999999999", "CCC1111", calendario.getTime(), format.parse("2022-01-30 15:00"));
+					system.locarVeiculo("88888888888", "CCC2222", calendario.getTime(), format.parse("2022-01-14 12:00"));
 					system.encerrarLocacao("CCC2222");
+					system.encerrarLocacao("ccc1111");
 					String loc = system.listarLocacoesFinalizadas();
-					System.out.println("Finalizados=" + loc);
-					system.locarVeiculo(calendario.getTime(), format.parse("2021-01-31 12:00"),  "88888888888", "CCC2222");
+					System.out.println("Locações Finalizadas= " + loc);
+					system.locarVeiculo("88888888888", "CCC2222", calendario.getTime(), format.parse("2022-01-14 12:00"));
 					loc = system.listarClientes();
 					System.out.println(loc);
 					loc = system.listarVeiculos();

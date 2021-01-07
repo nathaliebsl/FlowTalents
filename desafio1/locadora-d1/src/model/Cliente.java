@@ -8,7 +8,8 @@ public class Cliente {
 	
 	private String celular;
 	private String classeCnh[];
-	//private String cnh;
+	private static int sequencia = 0001;
+	private int id;
 	//private ArrayList<String> classeCnh = new ArrayList<String>();
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 	
@@ -17,7 +18,9 @@ public class Cliente {
 		
 		this.celular = celular;
 		this.classeCnh = new String[] {cnh};
+		this.id = sequencia++;
 		
+		//this.id = this.celular;
 		//if(Utilities.validarCnh(cnh)) {	
 			//String c = cnh;
 //			for(int i = 0; i < this.classeCnh.length; i++) {
@@ -44,7 +47,7 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return "Cliente [WhatsApp=" + celular + ", Classe da CNH=" + classeCnh + ", Locações= " + locacoes.size() + "]";
+		return "Cliente id=" + this.getId() + "[WhatsApp=" + celular + ", Classe da CNH=" + Arrays.toString(classeCnh) + ", Locações= " + locacoes.size() + "]";
 	}
 	
 	public String getCelular() {
@@ -70,7 +73,8 @@ public class Cliente {
 //	}
 	
 	public String getCnh() {
-		return Arrays.toString(classeCnh);
+		//return classeCnh;
+	return Arrays.toString(classeCnh);
 	}
 	
 	public void addCnh(String cnh) {
@@ -110,6 +114,11 @@ public class Cliente {
 			if(locacao.getId() == id)
 				return locacao;
 		} throw new Exception("Aluguel não cadastrado!");
+	}
+
+
+	public int getId() {
+		return id;
 	}
 
 

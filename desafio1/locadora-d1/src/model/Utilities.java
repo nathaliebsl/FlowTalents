@@ -2,7 +2,10 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.time.Year;
+//import java.util.Arrays;
 import java.util.Date;
+//import java.util.Iterator;
+//import java.lang.Iterable;
 
 public class Utilities {
 
@@ -16,13 +19,30 @@ public class Utilities {
 	}
 	
 	public static boolean validarMotorista(Cliente c, Veiculo v) {
-		if(c.getCnh().matches(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || c.getCnh().contains(v.getCategoria()) ) {
+		if(v.getCategoria().regionMatches(true, 0, c.getCnh(), 0, 1)); {
 			return true;
-		} else {
-			return false;
-		}
-		
+		} 	
+	
 	}
+//		String[] cnh = (c.getCnh());
+//		cnh = Arrays.asList(cnh);
+//		for(Cliente client :  ) {
+//			Iterator<String> cnh = stringList.iterator(); // Aqui foi normal. Ou seja, como ele já estava fazendo.
+//		}
+//		    for(Veiculo vehicle : cat)
+//		        if(c.equals(v))
+//		            System.out.println("O [" + c.getCnh() + "] existe nas 2 listas");
+//		if(c.getCnh().matches(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || c.getCnh().contains(v.getCategoria()) || c.getCnh() == v.getCategoria() ) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+		
+	
+	//for(int i = 0; i < this.classeCnh.length; i++) {
+//		if(this.classeCnh[i] == null) {
+//			this.classeCnh[i] = cnh;
+//			break;
 	
 //	public static boolean validarMotorista(Cliente c, Veiculo v) {
 //		if(String.valueOf(c.getCnh()) == v.getCategoria() || String.valueOf(c.getCnh()).contains(v.getCategoria())) {
