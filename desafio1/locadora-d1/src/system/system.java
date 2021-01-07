@@ -197,7 +197,7 @@ private static Locadora locadora = new Locadora();
 							
 							if(Utilities.validarMotorista(client, vehicle)) {
 								
-								//comparativo entre cnh do cliente e cat do veiculo, nao esta funcionando
+								//comparativo entre cnh do cliente e cat do veiculo
 									
 							if(!vehicle.isLocado()) { 
 								int id = locadora.getLocacoes().size();
@@ -207,25 +207,25 @@ private static Locadora locadora = new Locadora();
 								vehicle.addLocacao(result);
 								client.addLocacao(result);
 								vehicle.setLocado(true);
-								System.out.println("Efetuada Locação do veículo " + vehicle.toString() + " \n  " + client.toString() + "\n");
+								System.out.println("\nEfetuada Locação do veículo " + vehicle.toString() + " \n  " + client.toString() + "\n");
 							}
-							else throw new Exception("Veículo está alugado");
+							else throw new Exception("\nVeículo está alugado\n");
 							} 
-							else throw new Exception("Cnh do Motorista não Compativel com Categoria do Veículo");
+							else throw new Exception("\nCnh do Motorista não Compativel com Categoria do Veículo\n");
 						}
 						catch (Exception e){
 							System.out.println(e.getMessage());
 						}
 						
-					}else throw new Exception("Placa Inválida!");
+					}else throw new Exception("\nPlaca Inválida!\n");
 					
 				}
 				catch(Exception e){
 					System.out.println(e.getMessage());
 				}
 					
-			}else throw new Exception("Celular Inválido!");
-		}else throw new Exception("Data final menor que inicial!");
+			}else throw new Exception("\nCelular Inválido!\n");
+		}else throw new Exception("\nData final menor que inicial!\n");
 		
 		return result;
 	}
@@ -259,16 +259,16 @@ private static Locadora locadora = new Locadora();
 					loc.setDatafim(now);
 					loc.setFinalizado(true);
 					vehicle.setLocado(false);
-					System.out.println("ENCERRADO: Locação do veículo " + vehicle.toString() + " @ " + loc.getDatafim() +  "\n"); //será que puxa os dados do veículo?
+					System.out.println("\nENCERRADO: Locação do veículo " + vehicle.toString() + " @ " + loc.getDatafim() +  "\n"); //será que puxa os dados do veículo?
 				}
-				else throw new Exception("Não foi possível encerrar. Este Veículo não está locado!");
+				else throw new Exception("\nNão foi possível encerrar. Este Veículo não está locado!\n");
 			
 			}
 			catch (Exception e){
 				throw new Exception(e.getMessage());
 			}
 			
-		}else throw new Exception("Placa inválida!");
+		}else throw new Exception("\nPlaca inválida!\n");
 		
 		
 	}
@@ -292,7 +292,7 @@ private static Locadora locadora = new Locadora();
 				stringClientes+=("Cliente ID=" + client.getId() + " CNH: " + client.getCnh() + " Celular: " + client.getCelular() +  ultimaLocacao + ";\n" );
 			}
 		}
-		else throw new Exception("Não existem clientes cadastrados!");
+		else throw new Exception("\nNão existem clientes cadastrados!\n");
 		
 		return stringClientes;
 	}
@@ -306,10 +306,10 @@ private static Locadora locadora = new Locadora();
 			for(Veiculo vehicle: listaVeiculos){
 				ArrayList<Locacao> listaLocacoes = vehicle.getLocacoes();
 				String idCliente = vehicle.isLocado() ? " Veículo está locado para Cliente: " + listaLocacoes.get(listaLocacoes.size()-1).getCliente().getCelular() : "";
-				stringVeiculos+="Placa:" + vehicle.getPlaca() + " Modelo:" + vehicle.getMarca() + idCliente + ";\n";
+				stringVeiculos+= vehicle.getClass().getName() + "Placa:" + vehicle.getPlaca() + idCliente + ";\n";
 			}
 		}
-		else throw new Exception("Não existem carros cadastrados!");
+		else throw new Exception("\nNão existem veículos cadastrados!\n");
 		
 		return stringVeiculos;
 	}
@@ -328,15 +328,15 @@ private static Locadora locadora = new Locadora();
 					
 					days += Integer.parseInt(dataFim.split("/")[0]) - Integer.parseInt(dataInit.split("/")[0]);
 					
-					stringLocacoes+=" ID:" + loc.getId() + " Veiculo:" + loc.getVeiculo().getPlaca() + " Cliente:" + 
+					stringLocacoes+="ID:" + loc.getId() + " Veiculo:" + loc.getVeiculo().getPlaca() + " Cliente:" + 
 							loc.getCliente().getCelular()  + " Inicio: " + 
-							dataInit + " Fim: "  + dataFim + " Quantidade de dias de todos os alugueis: " + days + ";\n";
+							dataInit + " Finalizado em: "  + dataFim + ";\n";
 				}
 			}
 			
-			if(stringLocacoes == "") throw new Exception("Não existem locacoes finalizadas");
+			if(stringLocacoes == "") throw new Exception("\nNão existem locacoes finalizadas\n");
 		}
-		else throw new Exception("Não exisem locacoes cadastradas!");
+		else throw new Exception("\nNão exisem locacoes cadastradas!\n");
 		
 		return stringLocacoes;
 	}
@@ -350,20 +350,36 @@ private static Locadora locadora = new Locadora();
 			for(Locacao loc: listaLocacoes){
 				Date fim = loc.getDatafim();
 				
-				if( Utilities.formataDataDia(today).equals(Utilities.formataDataDia(fim) ) && !loc.isFinalizado()){
-					locacoesHoje+="ID:" + loc.getId() + " Carro: " + loc.getVeiculo().getPlaca() + " Cliente:" + 
-							loc.getCliente().getCelular();
+				if(Utilities.formataDataDia(today).equals(Utilities.formataDataDia(fim) ) && !loc.isFinalizado()){
+					locacoesHoje+= loc.toString() + "\n";
+					loc.setDatafim(today);
+					loc.setFinalizado(true);
 				}
 			}
 			
 			if(locacoesHoje.equals("")) 
-				throw new Exception("Não existem alugueis a serem finalizados hoje!");
+				throw new Exception("\nNão existem locações a serem finalizados hoje!\n");
 			
-		}else throw new Exception("Não existem alugueis cadastrados!");
+		}else throw new Exception("\nNão existem locações cadastradas!\n");
 		
 		return locacoesHoje;
 	}
 	
+	//nao testei esse ainda
+	public static String listarLocacoes() throws Exception{
+		String totalLocacoes = "";
+		ArrayList<Locacao> listaLocacoes = locadora.getLocacoes();
+		
+		if(!listaLocacoes.isEmpty()){
+			for(Locacao loc: listaLocacoes){
+
+					totalLocacoes+= loc.toString() + "\n";
+
+				}
+			} else throw new Exception("\nNão existem locações cadastradas!\n");
+		
+		return totalLocacoes;
+	}
 
 
 }

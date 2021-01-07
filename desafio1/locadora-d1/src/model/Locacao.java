@@ -27,7 +27,7 @@ public class Locacao {
 	
 	@Override
 	public String toString() {
-		return "Locacao [id=" + id + ", datainicio=" + datainicio + ", datafim=" + datafim + ", finalizado=" + finalizado + ", Veiculo=" + veiculo.getPlaca() + ", cliente=" + cliente.getCelular()
+		return "Locacao [id=" + id + ", inicio=" + datainicio + ", prazo de devolução=" + datafim + ", Veiculo=" + veiculo.getPlaca() + ", cliente=" + cliente.getCelular()
 				+ "]";
 	}
 
@@ -59,6 +59,7 @@ public class Locacao {
 	
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
+		
 	}
 	
 	

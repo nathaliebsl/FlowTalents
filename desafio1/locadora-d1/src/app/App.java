@@ -50,6 +50,9 @@ public class App {
 				case 8:
 					chain08();
 					break;
+				case 9:
+					chain09();
+					break;
 				}
 				
 			}
@@ -65,8 +68,9 @@ public class App {
 			System.out.println("4. Devolução");
 			System.out.println("5. Listar clientes");
 			System.out.println("6. Listar veiculos");
-			System.out.println("7. Listar locações finalizadas"); //será que precisa?
-			System.out.println("8. Listar locações a serem finalizados hoje"); // será que precisa? da pra tentar forçar finalizacao automatica daqui?
+			System.out.println("7. Listar locações em andamento");
+			System.out.println("8. Listar locações finalizadas"); //será que precisa?
+			System.out.println("9. Locações a serem finalizados hoje"); // será que precisa? da pra tentar forçar finalizacao automatica daqui?
 			
 		}
 		
@@ -76,7 +80,7 @@ public class App {
 			String placa, marca, ano, cor, categoria, portas, ac, cambio, direcao, cilindradas, capacidade, assentos;
 			boolean categorias;
 			
-			System.out.print("CADASTRO DE VEICULOS \n");
+			System.out.print("\nCADASTRO DE VEICULOS \n");
 			System.out.print("Placa (AAA####): ");
 			placa = cs.next();
 			System.out.print("Marca: ");
@@ -179,7 +183,7 @@ public class App {
 			Scanner cs = new Scanner(System.in);
 			String celular, cnh;
 			
-			System.out.print("CADASTRO DE CLIENTES\n");
+			System.out.print("\nCADASTRO DE CLIENTES\n");
 			System.out.print("Celular do Cliente (DDNNNNNNNNN) : ");
 			celular = cs.next();
 			System.out.print("Tipo de CNH (A, B, C, D) : ");
@@ -200,10 +204,10 @@ public class App {
 			Scanner cs = new Scanner(System.in);
 			String celular, placa, di, df, hi, hf;
 			
-			System.out.print("NOVA LOCAÇÃO\n ");
+			System.out.print("\nNOVA LOCAÇÃO\n");
 			System.out.print("Celular (DDNNNNNNNNN): ");
 			celular = cs.next();
-			System.out.print("Placa do carro (AAANNNN): ");
+			System.out.print("Placa do veículo (AAANNNN): ");
 			placa = cs.next();
 			System.out.print("Data início (dd/MM/yyyy): ");
 			di = cs.next();
@@ -219,6 +223,7 @@ public class App {
 			String[] horaInit  = hi.split(":");
 			String[] horaFinal = hf.split(":");
 			
+			//colocar mais um if para data inicial nao ser anterior a hoje e nem a data final
 			if((dataInit.length + horaInit.length == 6) && ( dataFinal.length + horaFinal.length == 6)){
 				GregorianCalendar calendarInit = new GregorianCalendar(Integer.parseInt(dataInit[2]), Integer.parseInt(dataInit[1])-1, 
 						Integer.parseInt(dataInit[0]), Integer.parseInt(horaInit[0]), Integer.parseInt(horaInit[1]));
@@ -227,7 +232,7 @@ public class App {
 
 				try{
 					Locacao loc = system.locarVeiculo(celular, placa, calendarInit.getTime(), calendarFinal.getTime());
-					System.out.println("Aluguel realizado com sucesso!\nData de devolução: " + loc.getDatafim() + "\n\n");
+					System.out.println("\nData de devolução: " + loc.getDatafim() + "\n\n");
 				}
 				catch (Exception e){
 					System.out.println(e.getMessage());
@@ -242,13 +247,13 @@ public class App {
 			Scanner cs = new Scanner(System.in);
 			String placa;
 			
-			System.out.print("DEVOLUÇÃO \n ");
-			System.out.print("Placa do carro (AAANNNN): ");
+			System.out.print("\nDEVOLUÇÃO\n ");
+			System.out.print("Placa do veículo (AAANNNN): ");
 			placa = cs.next();
 			
 			try{
 				system.encerrarLocacao(placa);
-				System.out.println("Carro devolvido com sucesso!");
+				System.out.println("Veículo devolvido com sucesso!");
 			}
 			catch (Exception e){
 				System.out.println(e.getMessage());
@@ -258,6 +263,7 @@ public class App {
 		}
 		
 		public static void chain05(){
+			System.out.println("\nCATÁLOGO DE CLIENTES:\n");
 			try{
 				String lista = system.listarClientes();
 				String[] array = lista.split(";");
@@ -272,6 +278,7 @@ public class App {
 		}
 		
 		public static void chain06(){
+			System.out.println("\nCATÁLOGO DE VEÍCULOS:\n");
 			try{
 				String lista = system.listarVeiculos();
 				String[] array = lista.split(";");
@@ -286,6 +293,22 @@ public class App {
 		}
 		
 		public static void chain07(){
+			System.out.println("\nLOCAÇOES EM ANDAMENTO:\n");
+			try{
+				String lista = system.listarLocacoes();
+				String[] array = lista.split(";");
+				
+				for(String str: array){
+					System.out.println(str);
+				}
+			}
+			catch (Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		public static void chain08(){
+			System.out.println("\nLOCAÇOES FINALIZADAS:\n");
 			try{
 				String lista = system.listarLocacoesFinalizadas();
 				String[] array = lista.split(";");
@@ -299,7 +322,8 @@ public class App {
 			}
 		}
 		
-		public static void chain08(){
+		public static void chain09(){
+			System.out.println("\nLOCAÇOES VENCENDO HOJE:\n");
 			try{
 				String lista = system.listarLocacoesHoje();
 				String[] array = lista.split(";");
