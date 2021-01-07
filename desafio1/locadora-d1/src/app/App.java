@@ -74,7 +74,9 @@ public class App {
 			
 			Scanner cs = new Scanner(System.in);
 			String placa, marca, ano, cor, categoria, portas, ac, cambio, direcao, cilindradas, capacidade, assentos;
+			boolean categorias;
 			
+			System.out.print("CADASTRO DE VEICULOS \n");
 			System.out.print("Placa (AAA####): ");
 			placa = cs.next();
 			System.out.print("Marca: ");
@@ -83,30 +85,31 @@ public class App {
 			ano = cs.next();
 			System.out.print("Cor: ");
 			cor = cs.next();
-			System.out.print("Classe do veículo - A(Moto), B(Carro), C(Caminhão) ou D(Onibus): ");
-			categoria = cs.next();
 			
 			int anoFabricacao = Integer.parseInt(ano);
 			
+			System.out.print("Classe do veículo - A(Moto), B(Carro), C(Caminhão) ou D(Onibus): ");
 			
-			if(categoria == "A") {
+			if(categorias = cs.hasNext("A")) {
+				categoria = cs.next();
 				
 				System.out.println("Cilindradas (####): ") ;
 				cilindradas = cs.next();
+				
 				int ccMoto = Integer.parseInt(cilindradas);
 				
 				try{
-					
 					Veiculo vehicle = system.cadastrarMoto(placa, marca, anoFabricacao, cor, ccMoto);
-					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! ");
+					System.out.println("Cadastro de " + vehicle.toString() + " realizado com Sucesso! \n\n ");
 				}
 				catch (Exception e){
 					System.out.println(e.getMessage());
 				}
-				
-			}
+				return;
+			} 
 			
-			if(categoria == "B") {
+			if(categorias = cs.hasNext("B")) {
+				categoria = cs.next();
 				
 				System.out.println("Portas (##): ");
 				portas = cs.next();
@@ -127,11 +130,11 @@ public class App {
 				catch (Exception e){
 					System.out.println(e.getMessage());
 				}
-				
-				
+				return;
 			}
 			
-			if(categoria == "C") {
+			if(categorias = cs.hasNext("C")) {
+				categoria = cs.next();
 				
 				System.out.println("Capacidade(em toneladas) (####) : ");
 				capacidade = cs.next();
@@ -146,10 +149,12 @@ public class App {
 				catch (Exception e){
 					System.out.println(e.getMessage());
 				}
+				return;
 				
-			}
+			} 
 			
-			if(categoria == "D") {
+			if(categorias = cs.hasNext("D")) {
+				categoria = cs.next();
 			
 				System.out.println("Quantidade de assentos (###) : ");
 				assentos = cs.next();
@@ -159,14 +164,14 @@ public class App {
 				try{
 					
 					Veiculo vehicle = system.cadastrarOnibus(placa, marca, anoFabricacao, cor, seats); 
-					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! ");
+					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! \n\n ");
 				}
 				catch (Exception e){
 					System.out.println(e.getMessage());
 				}
+				return;
 			}
 			
-
 		}
 		
 		public static void chain02(){
@@ -174,6 +179,7 @@ public class App {
 			Scanner cs = new Scanner(System.in);
 			String celular, cnh;
 			
+			System.out.print("CADASTRO DE CLIENTES\n");
 			System.out.print("Celular do Cliente (DDNNNNNNNNN) : ");
 			celular = cs.next();
 			System.out.print("Tipo de CNH (A, B, C, D) : ");
@@ -186,7 +192,7 @@ public class App {
 				catch (Exception e){
 					System.out.println(e.getMessage() + "\n");
 				}
-							
+			return;				
 		}
 			
 		
@@ -194,6 +200,7 @@ public class App {
 			Scanner cs = new Scanner(System.in);
 			String celular, placa, di, df, hi, hf;
 			
+			System.out.print("NOVA LOCAÇÃO\n ");
 			System.out.print("Celular (DDNNNNNNNNN): ");
 			celular = cs.next();
 			System.out.print("Placa do carro (AAANNNN): ");
@@ -220,7 +227,7 @@ public class App {
 
 				try{
 					Locacao loc = system.locarVeiculo(celular, placa, calendarInit.getTime(), calendarFinal.getTime());
-					System.out.println("Aluguel realizado com sucesso!\n Data de devolução: " + loc.getDatafim());
+					System.out.println("Aluguel realizado com sucesso!\nData de devolução: " + loc.getDatafim() + "\n\n");
 				}
 				catch (Exception e){
 					System.out.println(e.getMessage());
@@ -235,6 +242,7 @@ public class App {
 			Scanner cs = new Scanner(System.in);
 			String placa;
 			
+			System.out.print("DEVOLUÇÃO \n ");
 			System.out.print("Placa do carro (AAANNNN): ");
 			placa = cs.next();
 			

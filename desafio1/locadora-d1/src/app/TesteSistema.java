@@ -14,8 +14,8 @@ public class TesteSistema {
 	
 	public static void main(String args[]){
 		try{
-//			system.cadastrarVeiculo("MMM1111", "honda", 2020, "verde", "A");
-//			system.cadastrarVeiculo("CCC2222", "honda", 2021, "preto", "B");
+			system.cadastrarMoto("MMM1111", "honda", 2020, "verde", 100);
+			system.cadastrarCarro("CCC2222", "honda", 2021, "preto", 4, "S", "A", "H");
 			
 			try{
 				

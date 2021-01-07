@@ -55,14 +55,24 @@ public class Locadora {
 		veiculos.add(vehicle);
 	}
 	
-	public String tipoDoVeiculo(String placa) throws Exception {
+//	public String tipoDoVeiculo(String placa) throws Exception {
+//		
+//		for(Veiculo v: veiculos){
+//			if(v.getPlaca().equals(placa.toUpperCase())) {
+//				return v.getCategoria();
+//			}
+//		}
+//		throw new Exception("Veiculo não cadastrado!");
+//	}
+	
+	public boolean veiculoCadastrado(String placa) throws Exception{
 		
-		for(Veiculo v: veiculos){
-			if(v.getPlaca().equals(placa.toUpperCase())) {
-				return v.getCategoria();
-			}
+		for(Veiculo vehicle: veiculos){
+			if(vehicle.getPlaca().equals(placa))
+				return true;
 		}
-		throw new Exception("Veiculo não cadastrado!");
+		
+		return false;
 	}
 	
 	

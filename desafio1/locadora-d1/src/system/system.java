@@ -96,18 +96,18 @@ private static Locadora locadora = new Locadora();
 		Carro car = null;
 		
 		if(Utilities.validarPlaca(placa)){
-			try{
-				locadora.localizarVeiculo(placa);
-				throw new Exception("Veiculo já cadastrado!");
-			}
-			catch (Exception e){
+			
+			if(!locadora.veiculoCadastrado(placa)) {
+				
 				car = new Carro(placa, marca, anoFabricacao, cor, portas, ac, cambio, direcao);
 				locadora.addVeiculo(car);
+			
 			}
+			else throw new Exception("Veiculo já cadastrado!");
 		}
 		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
-		return null;
+		return car;
 	}
 	
 	public static Moto cadastrarMoto(String placa, String marca, int anoFabricacao, String cor, int cilindradas) throws Exception{
@@ -115,18 +115,25 @@ private static Locadora locadora = new Locadora();
 		Moto bike = null;
 		
 		if(Utilities.validarPlaca(placa)){
-			try{
-				locadora.localizarVeiculo(placa);
-				throw new Exception("Veiculo já cadastrado!");
-			}
-			catch (Exception e){
+			
+			if(!locadora.veiculoCadastrado(placa)) {
+				
 				bike = new Moto(placa, marca, anoFabricacao, cor, cilindradas);
 				locadora.addVeiculo(bike);
+			
+//			try{
+//				locadora.localizarVeiculo(placa);
+//				throw new Exception("Veiculo já cadastrado!");
+//			}
+//			catch (Exception e){
+//				bike = new Moto(placa, marca, anoFabricacao, cor, cilindradas);
+//				locadora.addVeiculo(bike);
 			}
+			else throw new Exception("Veiculo já cadastrado!");
 		}
 		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
-		return null;
+		return bike;
 	}
 	
 	public static Onibus cadastrarOnibus(String placa, String marca, int anoFabricacao, String cor, int assentos) throws Exception{
@@ -134,18 +141,17 @@ private static Locadora locadora = new Locadora();
 		Onibus bus = null;
 		
 		if(Utilities.validarPlaca(placa)){
-			try{
-				locadora.localizarVeiculo(placa);
-				throw new Exception("Veiculo já cadastrado!");
-			}
-			catch (Exception e){
+			if(!locadora.veiculoCadastrado(placa)) {
+				
 				bus = new Onibus(placa, marca, anoFabricacao, cor, assentos);
 				locadora.addVeiculo(bus);
+			
 			}
+			else throw new Exception("Veiculo já cadastrado!");
 		}
 		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
-		return null;
+		return bus;
 	}
 	
 	public static Caminhao cadastrarCaminhao(String placa, String marca, int anoFabricacao, String cor, int capacidade) throws Exception{
@@ -153,18 +159,17 @@ private static Locadora locadora = new Locadora();
 		Caminhao truck = null;
 		
 		if(Utilities.validarPlaca(placa)){
-			try{
-				locadora.localizarVeiculo(placa);
-				throw new Exception("Veiculo já cadastrado!");
-			}
-			catch (Exception e){
+			if(!locadora.veiculoCadastrado(placa)) {
+				
 				truck = new Caminhao(placa, marca, anoFabricacao, cor, capacidade);
 				locadora.addVeiculo(truck);
+			
 			}
+			else throw new Exception("Veiculo já cadastrado!");
 		}
 		else throw new Exception("Informe uma placa válida - formato AAA####");
 		
-		return null;
+		return truck;
 	}
 	
 	
@@ -251,10 +256,10 @@ private static Locadora locadora = new Locadora();
 //					
 //					if(df.after(now)) 
 					
-					
+					loc.setDatafim(now);
 					loc.setFinalizado(true);
 					vehicle.setLocado(false);
-					System.out.println("ENCERRADO: Locação do veículo " + vehicle.toString() + " @ " + now +  "\n"); //será que puxa os dados do veículo?
+					System.out.println("ENCERRADO: Locação do veículo " + vehicle.toString() + " @ " + loc.getDatafim() +  "\n"); //será que puxa os dados do veículo?
 				}
 				else throw new Exception("Não foi possível encerrar. Este Veículo não está locado!");
 			
@@ -318,6 +323,7 @@ private static Locadora locadora = new Locadora();
 			for(Locacao loc: listaLocacoes){
 				if(loc.isFinalizado()){
 					String dataInit = Utilities.formataData(loc.getDatainicio());
+					//String dataFinalizado = 
 					String dataFim = Utilities.formataData(loc.getDatafim());
 					
 					days += Integer.parseInt(dataFim.split("/")[0]) - Integer.parseInt(dataInit.split("/")[0]);
