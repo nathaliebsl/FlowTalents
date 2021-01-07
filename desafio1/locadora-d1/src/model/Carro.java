@@ -1,29 +1,33 @@
 package model;
 
-import java.util.Arrays;
-
 public class Carro extends Veiculo {
 	
 	private int portas;
-	private char ac;
-	private char cambio;
+	private String ac;
+	private String cambio;
 	private String direcao;
-	private String[] catCarro = {"A", "C", "D"};
+	private String categoria = "B";
+//	private String[] catCarro = {"A", "C", "D"};
 	
 	
-	public Carro (String placa, String marca, int anoFabricacao, String cor, int portas, char ac, char cambio, String direcao) throws Exception {
+	public Carro (String placa, String marca, int anoFabricacao, String cor, int portas, String ac, String cambio, String direcao) throws Exception {
 		super(placa, marca, anoFabricacao, cor);
 		this.portas = portas;
 		this.ac = ac;
 		this.cambio = cambio;
 		this.direcao = direcao;
-
+	
 	}
-
+	
 	
 	@Override
 	public String getCategoria() {
-		return Arrays.toString(catCarro);
+		return this.categoria;
+	}
+	
+	@Override
+	public String toString() {
+		return "Carro [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ano de fabricação=" + this.getAnoFabricacao() + ", cor= " + this.getCor() +  ", portas=" + this.getPortas() + ", AC=" + this.getAc() + ", cambio=" + this.getCambio() + ", direção=" + this.getDirecao() +" ]";
 	}
 	
 	
@@ -35,19 +39,19 @@ public class Carro extends Veiculo {
 		this.portas = portas;
 	}
 
-	public char getAc() {
+	public String getAc() {
 		return ac;
 	}
 
-	public void setAc(char ac) {
+	public void setAc(String ac) {
 		this.ac = ac;
 	}
 
-	public char getCambio() {
+	public String getCambio() {
 		return cambio;
 	}
 
-	public void setCambio(char cambio) {
+	public void setCambio(String cambio) {
 		this.cambio = cambio;
 	}
 
@@ -57,12 +61,6 @@ public class Carro extends Veiculo {
 
 	public void setDirecao(String direcao) {
 		this.direcao = direcao;
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "Carro [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ano de fabricação=" + this.getAnoFabricacao() + ", cor= " + this.getCor() +  ", portas=" + this.getPortas() + ", AC=" + this.getAc() + ", cambio=" + this.getCambio() + ", direção=" + this.getDirecao() +" ]";
 	}
 	
 

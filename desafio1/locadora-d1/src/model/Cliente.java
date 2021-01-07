@@ -8,7 +8,7 @@ public class Cliente {
 	
 	private String celular;
 	private String classeCnh[];
-	private static int sequencia = 0001;
+	private static int sequencia = 1;
 	private int id;
 	//private ArrayList<String> classeCnh = new ArrayList<String>();
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
@@ -47,7 +47,7 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return "Cliente id=" + this.getId() + "[WhatsApp=" + celular + ", Classe da CNH=" + Arrays.toString(classeCnh) + ", Locações= " + locacoes.size() + "]";
+		return "Cliente id=" + this.getId() + "[WhatsApp=" + celular + ", Classe da CNH=" + Arrays.toString(classeCnh).toUpperCase() + ", Locações= " + locacoes.size() + "]";
 	}
 	
 	public String getCelular() {

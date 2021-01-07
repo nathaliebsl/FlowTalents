@@ -17,23 +17,81 @@ private static Locadora locadora = new Locadora();
 		Cliente client = null;
 		
 		if(Utilities.validarCelular(celular)){
-			try{
-				locadora.localizarCliente(celular);
-				throw new Exception("Cliente já cadastrado!");
-			}
-			catch (Exception e){
+			
+			if(!locadora.clienteCadastrado(celular)) {
+			
+//			try{
 				client = new Cliente(celular, cnh);
 				locadora.addCliente(client);
-
-			}
+//				if(locadora.clienteCadastrado(celular)) {
+////				locadora.localizarCliente(celular);
+////				throw new Exception("Cliente já cadastrado!");
+//				} throw new Exception("Cliente já cadastrado!");
+//			}
+//			catch (Exception e){
+//				client = new Cliente(celular, cnh);
+//				locadora.addCliente(client);
+//
+//			}
+			} 
+			else throw new Exception("Cliente já cadastrado!");
 		}
 		else throw new Exception("Celular Inválido!");
 		
 		return client;
 	}
 	
+//	public static Veiculo cadastrarVeiculo(String placa, String marca, int anoFabricacao, String cor, String categoria) throws Exception{
+//		
+//		Veiculo vehicle = null;
+//		
+//		if(Utilities.validarPlaca(placa))
+//		{
+//			try{
+//				locadora.localizarVeiculo(placa);
+//				throw new Exception("Veiculo já cadastrado!");
+//			} 
+//			catch (Exception e)
+//			{
+//				
+//				String cat = categoria;
+//				
+//				if(cat == "A") {
+//					int cilindradas = 100;
+//					vehicle = new Moto(placa, marca, anoFabricacao, cor, cilindradas);
+//					locadora.addVeiculo(vehicle);
+//				} 
+//				
+//				if(cat == "B") {
+//					int portas = 4;
+//					char ac = 'S';
+//					char cambio = 'A';
+//					char direcao = 'H';
+//					
+//					vehicle = new Carro(placa, marca, anoFabricacao, cor, portas, ac, cambio, direcao);
+//					locadora.addVeiculo(vehicle);
+//				}
+//				
+//				if(cat == "C") {
+//					int capacidade = 1000;
+//					vehicle = new Caminhao(placa, marca, anoFabricacao, cor, capacidade);
+//					locadora.addVeiculo(vehicle);
+//				}
+//				
+//				if(cat == "D") {
+//					int assentos = 100;
+//					vehicle = new Onibus(placa, marca, anoFabricacao, cor, assentos);
+//					locadora.addVeiculo(vehicle);
+//				}
+//			}
+//		}
+//		else throw new Exception("Informe uma placa válida - formato AAA####");
+//		
+//		return null;
+//	}
 	
-	public static Carro cadastrarCarro(String placa, String marca, int anoFabricacao, String cor, int portas, char ac, char cambio, String direcao) throws Exception{
+	
+	public static Carro cadastrarCarro(String placa, String marca, int anoFabricacao, String cor, int portas, String ac, String cambio, String direcao) throws Exception{
 		
 		Carro car = null;
 		
@@ -134,7 +192,7 @@ private static Locadora locadora = new Locadora();
 							
 							if(Utilities.validarMotorista(client, vehicle)) {
 								
-								//comparativo entre cnh do cliente e cat do veiculo
+								//comparativo entre cnh do cliente e cat do veiculo, nao esta funcionando
 									
 							if(!vehicle.isLocado()) { 
 								int id = locadora.getLocacoes().size();
@@ -198,14 +256,15 @@ private static Locadora locadora = new Locadora();
 					vehicle.setLocado(false);
 					System.out.println("ENCERRADO: Locação do veículo " + vehicle.toString() + " @ " + now +  "\n"); //será que puxa os dados do veículo?
 				}
-				else throw new Exception("Veículo não está alugado!");
-				
+				else throw new Exception("Não foi possível encerrar. Este Veículo não está locado!");
+			
 			}
 			catch (Exception e){
 				throw new Exception(e.getMessage());
 			}
 			
 		}else throw new Exception("Placa inválida!");
+		
 		
 	}
 	
@@ -225,7 +284,7 @@ private static Locadora locadora = new Locadora();
 				}
 				else ultimaLocacao = "";
 				
-				stringClientes+=("CNH: " + client.getCnh() + " Celular: " + client.getCelular() +  ultimaLocacao + ";\n" );
+				stringClientes+=("Cliente ID=" + client.getId() + " CNH: " + client.getCnh() + " Celular: " + client.getCelular() +  ultimaLocacao + ";\n" );
 			}
 		}
 		else throw new Exception("Não existem clientes cadastrados!");

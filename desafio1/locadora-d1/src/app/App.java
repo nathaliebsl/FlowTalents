@@ -15,7 +15,8 @@ public class App {
 			Scanner sc = new Scanner(System.in);
 			
 			//Cadastro prévio de clientes e carros
-			flow00();
+			
+			//flow00();
 			
 			int op = 1;
 			
@@ -24,23 +25,30 @@ public class App {
 				op = sc.nextInt();
 				
 				switch(op){
+				
 				case 1:
-					flow01();
+					chain01();
 					break;
 				case 2:
-					flow02();
+					chain02();
 					break;
 				case 3:
-					flow03();
+					chain03();
 					break;
 				case 4:
-					flow04();
+					chain04();
 					break;
 				case 5:
-					flow05();
+					chain05();
 					break;
 				case 6:
-					flow06();
+					chain06();
+					break;
+				case 7:
+					chain07();
+					break;
+				case 8:
+					chain08();
 					break;
 				}
 				
@@ -51,41 +59,142 @@ public class App {
 		public static void showMenu(){
 			
 			System.out.println("0. Sair");
-			System.out.println("1. Alugar carro");
-			System.out.println("2. Devolver carro");
-			System.out.println("3. Listar clientes");
-			System.out.println("4. Listar carros");
-			System.out.println("5. Listar alugueis finalizados");
-			System.out.println("6. Listar alugueis a serem finalizados hoje");
+			System.out.println("1. Cadastrar veiculo");
+			System.out.println("2. Cadastrar cliente");
+			System.out.println("3. Nova Locação");
+			System.out.println("4. Devolução");
+			System.out.println("5. Listar clientes");
+			System.out.println("6. Listar veiculos");
+			System.out.println("7. Listar locações finalizadas"); //será que precisa?
+			System.out.println("8. Listar locações a serem finalizados hoje"); // será que precisa? da pra tentar forçar finalizacao automatica daqui?
 			
 		}
 		
-		public static void flow00(){
-			try{
-				system.cadastrarCliente("99999999999", "B");
-				system.cadastrarCliente("88888888888", "A");
-				system.cadastrarCliente("77777777777", "D");
-			}
-			catch (Exception e){
-				System.out.println(e.getMessage());
+		public static void chain01(){
+			
+			Scanner cs = new Scanner(System.in);
+			String placa, marca, ano, cor, categoria, portas, ac, cambio, direcao, cilindradas, capacidade, assentos;
+			
+			System.out.print("Placa (AAA####): ");
+			placa = cs.next();
+			System.out.print("Marca: ");
+			marca = cs.next();
+			System.out.print("Ano de fabricação (YYYY): ");
+			ano = cs.next();
+			System.out.print("Cor: ");
+			cor = cs.next();
+			System.out.print("Classe do veículo - A(Moto), B(Carro), C(Caminhão) ou D(Onibus): ");
+			categoria = cs.next();
+			
+			int anoFabricacao = Integer.parseInt(ano);
+			
+			
+			if(categoria == "A") {
+				
+				System.out.println("Cilindradas (####): ") ;
+				cilindradas = cs.next();
+				int ccMoto = Integer.parseInt(cilindradas);
+				
+				try{
+					
+					Veiculo vehicle = system.cadastrarMoto(placa, marca, anoFabricacao, cor, ccMoto);
+					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! ");
+				}
+				catch (Exception e){
+					System.out.println(e.getMessage());
+				}
+				
 			}
 			
-			try{
-				system.cadastrarCarro("CCC1111", "honda", 2021, "branco", 4, 'S', 'A', "eletrica");
-				system.cadastrarMoto("MMM1111", "honda", 2021, "preto", 100);
-				system.cadastrarOnibus("OOO1111", "honda", 2021, "verde", 100);
-				system.cadastrarCaminhao("TTT1111", "honda", 2021, "roxo", 2000);
+			if(categoria == "B") {
+				
+				System.out.println("Portas (##): ");
+				portas = cs.next();
+				System.out.println("AC (S ou N): ");
+				ac = cs.next();
+				System.out.println("Cambio (M ou A): ");
+				cambio = cs.next();
+				System.out.println("Direção (M, H ou E): ");
+				direcao = cs.next();
+				
+				int doors = Integer.parseInt(portas);
+				
+				try{
+					
+					Veiculo vehicle = system.cadastrarCarro(placa, marca, anoFabricacao, cor, doors, ac, cambio, direcao); 
+					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! \n\n");
+				}
+				catch (Exception e){
+					System.out.println(e.getMessage());
+				}
+				
+				
 			}
-			catch (Exception e){
-				System.out.println(e.getMessage());
+			
+			if(categoria == "C") {
+				
+				System.out.println("Capacidade(em toneladas) (####) : ");
+				capacidade = cs.next();
+				
+				int capacity = Integer.parseInt(capacidade);
+				
+				try{
+					
+					Veiculo vehicle = system.cadastrarCaminhao(placa, marca, anoFabricacao, cor, capacity); 
+					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! \n\n");
+				}
+				catch (Exception e){
+					System.out.println(e.getMessage());
+				}
+				
 			}
+			
+			if(categoria == "D") {
+			
+				System.out.println("Quantidade de assentos (###) : ");
+				assentos = cs.next();
+				
+				int seats = Integer.parseInt(assentos);
+				
+				try{
+					
+					Veiculo vehicle = system.cadastrarOnibus(placa, marca, anoFabricacao, cor, seats); 
+					System.out.println("Cadastro de " + vehicle.toString() + "realizado com Sucesso! ");
+				}
+				catch (Exception e){
+					System.out.println(e.getMessage());
+				}
+			}
+			
+
 		}
 		
-		public static void flow01(){
+		public static void chain02(){
+			
+			Scanner cs = new Scanner(System.in);
+			String celular, cnh;
+			
+			System.out.print("Celular do Cliente (DDNNNNNNNNN) : ");
+			celular = cs.next();
+			System.out.print("Tipo de CNH (A, B, C, D) : ");
+			cnh = cs.next();
+				
+				try{
+					Cliente client = system.cadastrarCliente(celular, cnh);	
+					System.out.println("Cadastro de " + client.toString() + " realizado com Sucesso! \n\n ");
+				}
+				catch (Exception e){
+					System.out.println(e.getMessage() + "\n");
+				}
+							
+		}
+			
+		
+		public static void chain03(){
 			Scanner cs = new Scanner(System.in);
 			String celular, placa, di, df, hi, hf;
 			
-			System.out.print("Celular (ddnnnnnnnnn): ");
+			System.out.print("Celular (DDNNNNNNNNN): ");
 			celular = cs.next();
 			System.out.print("Placa do carro (AAANNNN): ");
 			placa = cs.next();
@@ -122,7 +231,7 @@ public class App {
 			
 		}
 		
-		public static void flow02(){
+		public static void chain04(){
 			Scanner cs = new Scanner(System.in);
 			String placa;
 			
@@ -140,7 +249,7 @@ public class App {
 			
 		}
 		
-		public static void flow03(){
+		public static void chain05(){
 			try{
 				String lista = system.listarClientes();
 				String[] array = lista.split(";");
@@ -154,7 +263,7 @@ public class App {
 			}
 		}
 		
-		public static void flow04(){
+		public static void chain06(){
 			try{
 				String lista = system.listarVeiculos();
 				String[] array = lista.split(";");
@@ -168,7 +277,7 @@ public class App {
 			}
 		}
 		
-		public static void flow05(){
+		public static void chain07(){
 			try{
 				String lista = system.listarLocacoesFinalizadas();
 				String[] array = lista.split(";");
@@ -182,7 +291,7 @@ public class App {
 			}
 		}
 		
-		public static void flow06(){
+		public static void chain08(){
 			try{
 				String lista = system.listarLocacoesHoje();
 				String[] array = lista.split(";");
@@ -196,7 +305,7 @@ public class App {
 			}
 		}
 		
-
+		
 }
 
 

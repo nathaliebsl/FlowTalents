@@ -18,12 +18,12 @@ public class Utilities {
 		
 	}
 	
-	public static boolean validarMotorista(Cliente c, Veiculo v) {
-		if(v.getCategoria().regionMatches(true, 0, c.getCnh(), 0, 1)); {
-			return true;
-		} 	
-	
-	}
+//	public static boolean validarMotorista(Cliente c, Veiculo v) {
+//		if(v.getCategoria().regionMatches(true, 0, c.getCnh(), 0, 1) || c.getCnh().matches(v.getCategoria())) {
+//			return true;
+//		}
+//	
+//	}
 //		String[] cnh = (c.getCnh());
 //		cnh = Arrays.asList(cnh);
 //		for(Cliente client :  ) {
@@ -44,14 +44,14 @@ public class Utilities {
 //			this.classeCnh[i] = cnh;
 //			break;
 	
-//	public static boolean validarMotorista(Cliente c, Veiculo v) {
-//		if(String.valueOf(c.getCnh()) == v.getCategoria() || String.valueOf(c.getCnh()).contains(v.getCategoria())) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		
-//	}
+	public static boolean validarMotorista(Cliente c, Veiculo v) {
+		if(c.getCnh() == v.getCategoria() || c.getCnh().contains(v.getCategoria())) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 	
 	public static boolean validarCelular(String celular) {
 		if(celular.matches("\\d{11}") || String.valueOf(celular).matches("^null|$")) {

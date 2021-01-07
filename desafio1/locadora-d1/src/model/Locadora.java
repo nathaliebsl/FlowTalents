@@ -31,9 +31,9 @@ public class Locadora {
 		return clientes;
 	}
 	
-	public void setClientes(ArrayList<Cliente> clientes) {
-		this.clientes = clientes;
-	}
+//	public void setClientes(ArrayList<Cliente> clientes) {
+//		this.clientes = clientes;
+//	}
 	
 	public ArrayList<Veiculo> getVeiculos() {
 		return veiculos;
@@ -55,6 +55,17 @@ public class Locadora {
 		veiculos.add(vehicle);
 	}
 	
+	public String tipoDoVeiculo(String placa) throws Exception {
+		
+		for(Veiculo v: veiculos){
+			if(v.getPlaca().equals(placa.toUpperCase())) {
+				return v.getCategoria();
+			}
+		}
+		throw new Exception("Veiculo não cadastrado!");
+	}
+	
+	
 	public Veiculo localizarVeiculo(String placa) throws Exception {
 		
 		for(Veiculo v: veiculos){
@@ -69,6 +80,15 @@ public class Locadora {
 		clientes.add(client);
 	}
 	
+	public boolean clienteCadastrado(String celular) throws Exception{
+		
+		for(Cliente client: clientes){
+			if(client.getCelular().equals(celular))
+				return true;
+		}
+		
+		return false;
+	}
 	
 	public Cliente localizarCliente(String celular) throws Exception{
 		

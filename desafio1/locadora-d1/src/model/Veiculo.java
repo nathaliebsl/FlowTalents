@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class Veiculo {
 	
@@ -9,7 +8,7 @@ public abstract class Veiculo {
 	private String marca;
 	private int anoFabricacao;
 	private String cor;
-	private String[] categoria;
+	private String categoria;
 	private boolean locado;
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 
@@ -102,7 +101,7 @@ public abstract class Veiculo {
 	}
 
 	public String getCategoria() {
-		return Arrays.toString(this.categoria);
+		return categoria;
 	}
 
 	public boolean isLocado() {
