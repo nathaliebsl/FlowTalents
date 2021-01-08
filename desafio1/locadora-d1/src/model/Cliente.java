@@ -2,52 +2,35 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.lang.Exception;
 
 public class Cliente {
 	
 	private String celular;
-	private String classeCnh[];
+//	private ArrayList<String> classeCnh;
+//	private boolean classeCnh;
+	private String[] classeCnh = {};
 	private static int sequencia = 1;
 	private int id;
-	//private ArrayList<String> classeCnh = new ArrayList<String>();
 	private ArrayList<Locacao> locacoes = new ArrayList<Locacao>();
 	
 	
 	public Cliente(String celular, String cnh) {
-		
+//		String c = cnh;
 		this.celular = celular;
-		this.classeCnh = new String[] {cnh};
+		this.classeCnh = new String[classeCnh.length +1];
+		this.classeCnh[this.classeCnh.length - 1] = cnh;
+//		ArrayList<String> classeCnh = new ArrayList<String>();
+//		classeCnh.lenght;
+//		classeCnh.add(c);
+//		this.classeCnh.add(cnh);
 		this.id = sequencia++;
-		
-		//this.id = this.celular;
-		//if(Utilities.validarCnh(cnh)) {	
-			//String c = cnh;
-//			for(int i = 0; i < this.classeCnh.length; i++) {
-//				if(this.classeCnh[i] == null) {
-//					this.classeCnh[i] = cnh;
-//					break;
-//				}
-//			}
-		}
-		
-		
-//		if(!Utilities.validaCelular(celular)) {
-//			throw new IllegalArgumentException("Celular deve ser válido - Formato: DDNNNNNNNNN");
-//		} else {
-//			this.celular = celular;
-//		}
-//		
-//		if(!Utilities.validaCnh(cnh)) {
-//			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
-//		}else {
-//			this.classeCnh.add(cnh);
-//			}
-	//}
+	}
 	
 	@Override
 	public String toString() {
-		return "Cliente id=" + this.getId() + "[WhatsApp=" + celular + ", Classe da CNH=" + Arrays.toString(classeCnh).toUpperCase() + ", Locações= " + locacoes.size() + "]";
+		return "Cliente id=" + this.getId() + "[WhatsApp=" + celular + ", Classe da CNH=" + Arrays.toString(this.classeCnh).toUpperCase() + ", Locações= " + locacoes.size() + "]";
 	}
 	
 	public String getCelular() {
@@ -58,23 +41,9 @@ public class Cliente {
 		this.celular = celular;
 	}
 	
-//	public ArrayList<String> getCnh() {
-//		return classeCnh;
-//	}
-//	
-//	public void addCnh(String cnh) {
-//		if(!Utilities.validarCnh(String.valueOf(cnh))) {
-//			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
-//		} 
-//		if(Utilities.validarCnh(String.valueOf(cnh)) && (!classeCnh.contains(cnh))) {	
-//			classeCnh.add(cnh);
-//		} 
-//
-//	}
-	
 	public String getCnh() {
-		//return classeCnh;
-	return Arrays.toString(classeCnh);
+		Arrays.sort(this.classeCnh);
+		return Arrays.toString(this.classeCnh).toUpperCase();
 	}
 	
 	public void addCnh(String cnh) {
@@ -82,15 +51,31 @@ public class Cliente {
 			throw new IllegalArgumentException("Classe deve ser válida - A, B, C ou D");
 		} 
 		if(Utilities.validarCnh(cnh)) {	
-			int i;
-			for(i = 0; i < classeCnh.length; i++) {
-			classeCnh[i] = cnh;
-			} 
-		}
+			
+			this.classeCnh = Arrays.copyOf(this.classeCnh, this.classeCnh.length +1);
+			this.classeCnh[this.classeCnh.length - 1] = cnh;
+//			this.classeCnh.add(cnh);
+//			String add[] = new String[this.classeCnh.length+2];
+//			for(int i = 0; i < this.classeCnh.length; i++) {
+//				if(i==add.length-1){
+//		            add[i] = cnh;
+//		            add[i] = this.classeCnh[i];
+//				}
+//			
+//				for(int i = 0; i < this.classeCnh.length; i++) {
+//				  if(i==classeCnh.length-1){
+//			            classeCnh[i]= cnh;
+//				  }
+				  
+//				System.out.println(this.classeCnh.length);
+//				this.classeCnh[i] = this.classeCnh[this.classeCnh.length - 1] = cnh;
+//				this.classeCnh[this.classeCnh.length - 1] = cnh;
+//				this.classeCnh.add(cnh);
+//			}
+			}
 
 	}
 
-	
 	public ArrayList<Locacao> getLocacoes() {
 		return locacoes;
 	}
@@ -115,7 +100,6 @@ public class Cliente {
 				return locacao;
 		} throw new Exception("Aluguel não cadastrado!");
 	}
-
 
 	public int getId() {
 		return id;

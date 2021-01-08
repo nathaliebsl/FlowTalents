@@ -24,41 +24,12 @@ public abstract class Veiculo {
 		this.anoFabricacao = anoFabricacao;
 		this.cor = cor;
 		
-//		if(Utilities.validarPlaca(placa)) {
-//			this.placa = placa;
-//		} else { 
-//			System.out.println("Informe uma placa válida - formato AAA####");
-//			return;
-//		}
-//		
-//		if(marca != null) {
-//			this.marca = marca.toUpperCase();
-//		} else {
-//			System.out.println("Informe uma marca válida");
-//			return;
-//		}
-//		
-//		if(Utilities.validarAnoFabricacao(anoFabricacao)) {
-//			this.anoFabricacao = anoFabricacao;
-//		} else {
-//			System.out.println("Informe um ano de fabricação válido");
-//			return;
-//		}
-//		
-//		if(cor != null) {
-//			this.cor = cor.toUpperCase();
-//			
-//		} else { 
-//			System.out.println("Informe uma cor válida");
-//			return;
-//		}
-		
 		locado = false;
 		
 	}
 	
 	public String getMarca() {
-		return marca;
+		return marca.toUpperCase();
 	}
 	
 	public void setMarca(String marca) {
@@ -80,7 +51,7 @@ public abstract class Veiculo {
 	}
 	
 	public String getCor() {
-		return cor;
+		return cor.toUpperCase();
 	}
 	
 	public void setCor(String cor) {
@@ -93,7 +64,7 @@ public abstract class Veiculo {
 	}
 
 	public String getPlaca() {
-		return placa;
+		return placa.toUpperCase();
 	}
 
 	public void setPlaca(String placa) {
@@ -101,7 +72,7 @@ public abstract class Veiculo {
 	}
 
 	public String getCategoria() {
-		return categoria;
+		return categoria.toUpperCase();
 	}
 
 	public boolean isLocado() {

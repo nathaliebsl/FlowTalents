@@ -4,13 +4,15 @@ import java.text.SimpleDateFormat;
 import java.time.Year;
 //import java.util.Arrays;
 import java.util.Date;
-//import java.util.Iterator;
-//import java.lang.Iterable;
+//import java.util.List;
+//import java.util.stream.Collectors;
+
 
 public class Utilities {
 
 	public static boolean validarCnh(String cnh) {
-		if(cnh.matches("A") || cnh.matches("B") || cnh.matches("C") || cnh.matches("D") || String.valueOf(cnh).matches("^null|$")) {
+		
+		if(cnh.toUpperCase().matches("A") || cnh.toUpperCase().matches("B") || cnh.toUpperCase().matches("C") || cnh.toUpperCase().matches("D") || String.valueOf(cnh).matches("^null|$")) {
 			return true;
 		} else {
 			return false;
@@ -18,39 +20,16 @@ public class Utilities {
 		
 	}
 	
-//	public static boolean validarMotorista(Cliente c, Veiculo v) {
-//		if(v.getCategoria().regionMatches(true, 0, c.getCnh(), 0, 1) || c.getCnh().matches(v.getCategoria())) {
-//			return true;
-//		}
-//	
-//	}
-//		String[] cnh = (c.getCnh());
-//		cnh = Arrays.asList(cnh);
-//		for(Cliente client :  ) {
-//			Iterator<String> cnh = stringList.iterator(); // Aqui foi normal. Ou seja, como ele já estava fazendo.
-//		}
-//		    for(Veiculo vehicle : cat)
-//		        if(c.equals(v))
-//		            System.out.println("O [" + c.getCnh() + "] existe nas 2 listas");
-//		if(c.getCnh().matches(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || c.getCnh().contains(v.getCategoria()) || c.getCnh() == v.getCategoria() ) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-		
-	
-	//for(int i = 0; i < this.classeCnh.length; i++) {
-//		if(this.classeCnh[i] == null) {
-//			this.classeCnh[i] = cnh;
-//			break;
-	
 	public static boolean validarMotorista(Cliente c, Veiculo v) {
-		if(c.getCnh() == v.getCategoria() || c.getCnh().contains(v.getCategoria())) {
+		String b = "B";
+		
+		if(c.getCnh().contains(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || (c.getCnh().contains(b) && v.getCategoria().contains(b) || (v.getCategoria().matches(b) && c.getCnh().contains(b)) )) {
 			return true;
 		} else {
 			return false;
 		}
 		
+	
 	}
 	
 	public static boolean validarCelular(String celular) {

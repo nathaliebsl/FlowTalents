@@ -3,7 +3,7 @@ package model;
 public class Moto extends Veiculo {
 	
 	private int cilindradas;
-	private String categoria = "A";
+//	private String categoria = "A";
 	
 	public Moto(String placa, String marca, int anoFabricacao, String cor, int cilindradas) {
 		super(placa, marca, anoFabricacao, cor);
@@ -14,7 +14,8 @@ public class Moto extends Veiculo {
 	
 	@Override
 	public String getCategoria() {
-		return this.categoria;
+		String categoria = "A"; 
+		return categoria;
 	}
 	
 	@Override

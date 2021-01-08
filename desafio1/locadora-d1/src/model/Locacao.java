@@ -27,7 +27,7 @@ public class Locacao {
 	
 	@Override
 	public String toString() {
-		return "Locacao [id=" + id + ", inicio=" + datainicio + ", prazo de devolução=" + datafim + ", Veiculo=" + veiculo.getPlaca() + ", cliente=" + cliente.getCelular()
+		return "Locação [id=" + id + ", início=" + datainicio + ", prazo de devolução=" + datafim + ", Veículo=" + veiculo.getPlaca() + ", Cliente=" + cliente.getCelular()
 				+ "]";
 	}
 
@@ -61,8 +61,7 @@ public class Locacao {
 		this.finalizado = finalizado;
 		
 	}
-	
-	
+		
 	public Cliente getCliente() {
 		return cliente;
 	}

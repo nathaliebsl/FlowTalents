@@ -3,7 +3,7 @@ package model;
 public class Onibus extends Veiculo {
 	
 	private int assentos;
-	private String categoria = "D";
+//	private String categoria = "D";
 
 	public Onibus(String placa, String marca, int anoFabricacao, String cor, int assentos) {
 		super(placa, marca, anoFabricacao, cor);
@@ -14,12 +14,13 @@ public class Onibus extends Veiculo {
 	
 	@Override
 	public String getCategoria() {
-		return this.categoria;
+		String categoria = "D"; 
+		return categoria;
 	}
 	
 	@Override
 	public String toString() {
-		return "Onibus [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ano de fabricação=" + this.getAnoFabricacao() + ", cor= " + this.getCor() + ", assentos=" + this.getAssentos() + "]";
+		return "Ônibus [placa=" + this.getPlaca() + ", marca=" + this.getMarca() + ", ano de fabricação=" + this.getAnoFabricacao() + ", cor= " + this.getCor() + ", assentos=" + this.getAssentos() + "]";
 	}
 	
 	public int getAssentos() {
