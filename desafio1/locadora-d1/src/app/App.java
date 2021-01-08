@@ -14,52 +14,48 @@ public class App {
 		
 			Scanner sc = new Scanner(System.in);
 			
-			//Cadastro prévio de clientes e carros
+			int opt = 1;
 			
-			//flow00();
-			
-			int op = 1;
-			
-			while(op != 0){
-				showMenu();
-				op = sc.nextInt();
+			while(opt != 0){
+				menuInicial();
+				opt = sc.nextInt();
 				
-				switch(op){
+				switch(opt){
 				
 				case 1:
-					chain01();
+					opcao01();
 					break;
 				case 2:
-					chain02();
+					opcao02();
 					break;
 				case 3:
-					chain03();
+					opcao03();
 					break;
 				case 4:
-					chain04();
+					opcao04();
 					break;
 				case 5:
-					chain05();
+					opcao05();
 					break;
 				case 6:
-					chain06();
+					opcao06();
 					break;
 				case 7:
-					chain07();
+					opcao07();
 					break;
 				case 8:
-					chain08();
+					opcao08();
 					break;
 				case 9:
-					chain09();
+					opcao09();
 					break;
 				}
 				
-			}
+			} sc.close();
 			
 		}
 		
-		public static void showMenu(){
+		public static void menuInicial(){
 			
 			System.out.println("0. Sair");
 			System.out.println("1. Cadastrar veiculo");
@@ -74,7 +70,7 @@ public class App {
 			
 		}
 		
-		public static void chain01(){
+		public static void opcao01(){
 			
 			Scanner cs = new Scanner(System.in);
 			String placa, marca, ano, cor, categoria, portas, ac, cambio, direcao, cilindradas, capacidade, assentos;
@@ -178,7 +174,7 @@ public class App {
 			
 		}
 		
-		public static void chain02(){
+		public static void opcao02(){
 			
 			Scanner cs = new Scanner(System.in);
 			String celular, cnh;
@@ -200,7 +196,7 @@ public class App {
 		}
 			
 		
-		public static void chain03(){
+		public static void opcao03(){
 			Scanner cs = new Scanner(System.in);
 			String celular, placa, di, df, hi, hf;
 			
@@ -243,7 +239,7 @@ public class App {
 			
 		}
 		
-		public static void chain04(){
+		public static void opcao04(){
 			Scanner cs = new Scanner(System.in);
 			String placa;
 			
@@ -262,7 +258,7 @@ public class App {
 			
 		}
 		
-		public static void chain05(){
+		public static void opcao05(){
 			System.out.println("\nCATÁLOGO DE CLIENTES:\n");
 			try{
 				String lista = system.listarClientes();
@@ -277,7 +273,7 @@ public class App {
 			}
 		}
 		
-		public static void chain06(){
+		public static void opcao06(){
 			System.out.println("\nCATÁLOGO DE VEÍCULOS:\n");
 			try{
 				String lista = system.listarVeiculos();
@@ -292,7 +288,7 @@ public class App {
 			}
 		}
 		
-		public static void chain07(){
+		public static void opcao07(){
 			System.out.println("\nLOCAÇOES EM ANDAMENTO:\n");
 			try{
 				String lista = system.listarLocacoes();
@@ -307,7 +303,7 @@ public class App {
 			}
 		}
 		
-		public static void chain08(){
+		public static void opcao08(){
 			System.out.println("\nLOCAÇOES FINALIZADAS:\n");
 			try{
 				String lista = system.listarLocacoesFinalizadas();
@@ -322,7 +318,7 @@ public class App {
 			}
 		}
 		
-		public static void chain09(){
+		public static void opcao09(){
 			System.out.println("\nLOCAÇOES VENCENDO HOJE:\n");
 			try{
 				String lista = system.listarLocacoesHoje();
