@@ -3,7 +3,6 @@ package model;
 public class Onibus extends Veiculo {
 	
 	private int assentos;
-//	private String categoria = "D";
 
 	public Onibus(String placa, String marca, int anoFabricacao, String cor, int assentos) {
 		super(placa, marca, anoFabricacao, cor);

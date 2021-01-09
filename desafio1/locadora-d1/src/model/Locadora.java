@@ -110,10 +110,4 @@ public class Locadora {
 		throw new Exception("Locação não cadastrada!");
 	}
 	
-//	public Cliente getCliente(String celular) throws Exception{
-//		for(Cliente cli: clientes){
-//			if(cli.getCelular() == celular)
-//				return cli;
-//		} throw new Exception("Cliente não cadastrado!");
-//	}
 }

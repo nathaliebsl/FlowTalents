@@ -8,8 +8,6 @@ import java.lang.Exception;
 public class Cliente {
 	
 	private String celular;
-//	private ArrayList<String> classeCnh;
-//	private boolean classeCnh;
 	private String[] classeCnh = {};
 	private static int sequencia = 1;
 	private int id;
@@ -17,14 +15,9 @@ public class Cliente {
 	
 	
 	public Cliente(String celular, String cnh) {
-//		String c = cnh;
 		this.celular = celular;
 		this.classeCnh = new String[classeCnh.length +1];
 		this.classeCnh[this.classeCnh.length - 1] = cnh;
-//		ArrayList<String> classeCnh = new ArrayList<String>();
-//		classeCnh.lenght;
-//		classeCnh.add(c);
-//		this.classeCnh.add(cnh);
 		this.id = sequencia++;
 	}
 	
@@ -54,24 +47,6 @@ public class Cliente {
 			
 			this.classeCnh = Arrays.copyOf(this.classeCnh, this.classeCnh.length +1);
 			this.classeCnh[this.classeCnh.length - 1] = cnh;
-//			this.classeCnh.add(cnh);
-//			String add[] = new String[this.classeCnh.length+2];
-//			for(int i = 0; i < this.classeCnh.length; i++) {
-//				if(i==add.length-1){
-//		            add[i] = cnh;
-//		            add[i] = this.classeCnh[i];
-//				}
-//			
-//				for(int i = 0; i < this.classeCnh.length; i++) {
-//				  if(i==classeCnh.length-1){
-//			            classeCnh[i]= cnh;
-//				  }
-				  
-//				System.out.println(this.classeCnh.length);
-//				this.classeCnh[i] = this.classeCnh[this.classeCnh.length - 1] = cnh;
-//				this.classeCnh[this.classeCnh.length - 1] = cnh;
-//				this.classeCnh.add(cnh);
-//			}
 			}
 
 	}

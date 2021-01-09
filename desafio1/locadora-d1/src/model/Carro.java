@@ -18,8 +18,7 @@ public class Carro extends Veiculo {
 		this.direcao = direcao;
 
 	}
-	
-	
+		
 	@Override
 	public String getCategoria() {
 		String[] categoria = {"B, C, D"};

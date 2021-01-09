@@ -105,4 +105,5 @@ public abstract class Veiculo {
 		throw new Exception("Locação não cadastrada!");
 	}
 	
+	
 }

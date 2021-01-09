@@ -2,8 +2,6 @@ package model;
 
 import java.util.Date;
 
-//precisa alguns ajustes ainda para compilar.
-
 public class Locacao {
 	
 	private static int sequencia = 0;
@@ -17,11 +15,11 @@ public class Locacao {
 	
 
 	public Locacao(int id, Date inicio, Date fim, Veiculo vehicle , Cliente client){
-		this.id = sequencia++; //cria sequencia numérica a cada nova locação
+		this.id = sequencia++; 
 		datainicio = inicio;
 		datafim = fim;
-		veiculo = vehicle; //preciso puxar do Bc de veiculos?
-		cliente = client; //preciso puxar do Bc de cliente?
+		veiculo = vehicle;
+		cliente = client; 
 		finalizado = false;
 	}
 	
@@ -74,7 +72,5 @@ public class Locacao {
 		return veiculo;
 	}
 	
-	
-
 
 }

@@ -3,7 +3,6 @@ package model;
 public class Moto extends Veiculo {
 	
 	private int cilindradas;
-//	private String categoria = "A";
 	
 	public Moto(String placa, String marca, int anoFabricacao, String cor, int cilindradas) {
 		super(placa, marca, anoFabricacao, cor);
