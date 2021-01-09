@@ -313,7 +313,7 @@ private static Locadora locadora = new Locadora();
 			
 			if(stringLocacoes == "") throw new Exception("\nNão existem locacoes finalizadas\n");
 		}
-		else throw new Exception("\nNão exisem locacoes cadastradas!\n");
+		else throw new Exception("\nNão existem locacoes cadastradas!\n");
 		
 		return stringLocacoes;
 	}
@@ -334,7 +334,7 @@ private static Locadora locadora = new Locadora();
 					locacoesHoje+= loc.toString() + "\n";
 					loc.setDatafim(today);
 					loc.setFinalizado(true);
-					System.out.println("\nLocações que venciam hoje foram encerradas!\n");
+					System.out.println("\nmensagem automática:\nLocações que venciam hoje foram encerradas!\n");
 				}
 			} 
 		
@@ -352,7 +352,7 @@ private static Locadora locadora = new Locadora();
 					if(!loc.isFinalizado()) {
 
 					totalLocacoes+= loc.toString() + "\n";
-					} else throw new Exception("\nNão existem locações em andamento!\n");
+					} else throw new Exception("\nNão há nenhuma locação em andamento!\n");
 				}
 				
 			}

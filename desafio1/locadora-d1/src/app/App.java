@@ -47,9 +47,6 @@ public class App {
 				case 8:
 					opcao08();
 					break;
-				case 9:
-					//opcao09();
-					break;
 				}
 				
 			} sc.close();
@@ -65,9 +62,8 @@ public class App {
 			System.out.println("4. Devolução");
 			System.out.println("5. Listar clientes");
 			System.out.println("6. Listar veiculos");
-			System.out.println("7. Listar locações em andamento");
+			System.out.println("7. Listar locações cadastradas");
 			System.out.println("8. Listar locações finalizadas"); 
-			System.out.println("9. Locações a serem finalizados hoje");
 			
 		}
 		
@@ -300,7 +296,7 @@ public class App {
 		}
 		
 		public static void opcao07(){
-			System.out.println("\nLOCAÇÕES EM ANDAMENTO:\n");
+			System.out.println("\nLOCAÇÕES CADASTRADAS:\n");
 			try{
 				String lista = system.listarLocacoes();
 				String[] array = lista.split(";");
