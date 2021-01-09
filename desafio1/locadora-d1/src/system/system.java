@@ -334,6 +334,7 @@ private static Locadora locadora = new Locadora();
 					locacoesHoje+= loc.toString() + "\n";
 					loc.setDatafim(today);
 					loc.setFinalizado(true);
+					loc.getVeiculo().setLocado(false);
 					System.out.println("\nmensagem automática:\nLocações que venciam hoje foram encerradas!\n");
 				}
 			} 
