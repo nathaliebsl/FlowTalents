@@ -55,8 +55,7 @@ private static Locadora locadora = new Locadora();
 
 	}
 	
-	
-	
+		
 	public static Carro cadastrarCarro(String placa, String marca, int anoFabricacao, String cor, int portas, String ac, String cambio, String direcao) throws Exception{
 		
 		Carro car = null;
@@ -339,13 +338,9 @@ private static Locadora locadora = new Locadora();
 					loc.setFinalizado(true);
 					System.out.println("\nLocações que venciam hoje foram encerradas!\n");
 				}
-			}
-			
-			if(locacoesHoje.equals("")) 
-				throw new Exception("\nNão existem locações a serem finalizados hoje!\n");
-			
-		}else throw new Exception("\nNão existem locações cadastradas!\n");
+			} 
 		
+	}
 		return locacoesHoje;
 	}
 	
@@ -356,11 +351,14 @@ private static Locadora locadora = new Locadora();
 		
 		if(!listaLocacoes.isEmpty()){
 			for(Locacao loc: listaLocacoes){
+					if(!loc.isFinalizado()) {
 
 					totalLocacoes+= loc.toString() + "\n";
-
+					} else throw new Exception("\nNão existem locações em andamento!\n");
 				}
-			} else throw new Exception("\nNão existem locações cadastradas!\n");
+				
+			}
+			else throw new Exception("\nNão existem locações cadastradas!\n");
 		
 		return totalLocacoes;
 	}

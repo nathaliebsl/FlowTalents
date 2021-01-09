@@ -18,6 +18,7 @@ public class App {
 			
 			while(opt != 0){
 				menuInicial();
+				opcao();
 				opt = sc.nextInt();
 				
 				switch(opt){
@@ -47,7 +48,7 @@ public class App {
 					opcao08();
 					break;
 				case 9:
-					opcao09();
+					//opcao09();
 					break;
 				}
 				
@@ -65,8 +66,8 @@ public class App {
 			System.out.println("5. Listar clientes");
 			System.out.println("6. Listar veiculos");
 			System.out.println("7. Listar locações em andamento");
-			System.out.println("8. Listar locações finalizadas"); //será que precisa?
-			System.out.println("9. Locações a serem finalizados hoje"); // será que precisa? da pra tentar forçar finalizacao automatica daqui?
+			System.out.println("8. Listar locações finalizadas"); 
+			System.out.println("9. Locações a serem finalizados hoje");
 			
 		}
 		
@@ -117,9 +118,9 @@ public class App {
 					portas = sc.next();
 					System.out.println("Ar Condicionado (S ou N):  ");
 					ac = sc.next();
-					System.out.println("Tipo de Câmbio\n[manual digite: M]\n[automático digite: A]:  ");
+					System.out.println("Tipo de Câmbio\n[Manual] digite: M\n[Automático] digite: A:  ");
 					cambio = sc.next();
-					System.out.println("Tipo de Direção\n[manual digite: M]\n[hidráulica digite: H]\n[elétrica digite: E]:  ");
+					System.out.println("Tipo de Direção\n[Mecânica] digite: M\n[Hidráulica] digite: H\n[Elétrica] digite: E:  ");
 					direcao = sc.next();
 				
 					int doors = Integer.parseInt(portas);
@@ -185,7 +186,7 @@ public class App {
 			System.out.print("\nCADASTRO DE CLIENTES\n\n");
 			System.out.print("Celular do Cliente (DDNNNNNNNNN): ");
 			celular = sc.next();
-			System.out.print("\nTipo de CNH\n\n[Motos - digite: A]\n[Carros - digite: B]\n[Caminhões e Carros digite: C]\n[Onibus, Caminhões e Carros digite: D]\n");
+			System.out.print("\nTipo de CNH\n\n[Motos] - digite: A\n[Carros] - digite: B\n[Caminhões e Carros] digite: C\n[Onibus, Caminhões e Carros] digite: D\n");
 			cnh = sc.next();
 				
 				try{
@@ -223,7 +224,6 @@ public class App {
 			String[] horaInit  = hi.split(":");
 			String[] horaFinal = hf.split(":");
 			
-			//colocar mais um if para data inicial nao ser anterior a hoje e nem a data final
 			if((dataInit.length + horaInit.length == 6) && ( dataFinal.length + horaFinal.length == 6))
 			{
 				GregorianCalendar calendarInit = new GregorianCalendar(Integer.parseInt(dataInit[2]), Integer.parseInt(dataInit[1])-1, 
@@ -244,7 +244,7 @@ public class App {
 					System.out.println(e.getMessage() + "\n");
 					}
 				} else { 
-					System.out.println("Favor informar datas válidas");
+					System.out.println("\nFavor informar datas válidas!\ndata de início não pode ser anterior a data atual\ndata de devolução nao pode ser anterior a data atual\ndevolução nao pode ser antes da data de início\n");
 				}
 			}
 			
@@ -260,7 +260,7 @@ public class App {
 			
 			try{
 				system.encerrarLocacao(placa);
-				System.out.println("Veículo devolvido com sucesso!");
+				System.out.println("Veículo devolvido com sucesso!\n");
 			}
 			catch (Exception e){
 				System.out.println(e.getMessage() + "\n");
@@ -329,16 +329,15 @@ public class App {
 			}
 		}
 		
-		//será que consigo enviar isso para que cada vez que o menu carregar ele acione?
-		public static void opcao09(){
-			System.out.println("\nLOCAÇÕES VENCENDO HOJE:\n");
+		public static void opcao(){
+
 			try{
 				String lista = system.listarLocacoesHoje();
 				String[] array = lista.split(";");
 				
 				for(String str: array){
 					System.out.println(str);
-				}
+				} 
 			}
 			catch (Exception e){
 				System.out.println(e.getMessage() + "\n");

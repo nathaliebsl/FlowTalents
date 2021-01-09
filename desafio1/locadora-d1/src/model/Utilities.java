@@ -22,8 +22,10 @@ public class Utilities {
 	
 	public static boolean validarMotorista(Cliente c, Veiculo v) {
 		String b = "B";
+		String ce = "C";
+		String d = "D";
 		
-		if(c.getCnh().contains(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || (c.getCnh().contains(b) && v.getCategoria().contains(b) || (v.getCategoria().matches(b) && c.getCnh().contains(b)) )) {
+		if(c.getCnh().contains(v.getCategoria()) || v.getCategoria().contains(c.getCnh()) || (c.getCnh().contains(b) && v.getCategoria().contains(b) || (v.getCategoria().matches(b) && c.getCnh().contains(b))) || (c.getCnh().contains(ce) && v.getCategoria().contains(ce) || (v.getCategoria().matches(ce) && c.getCnh().contains(ce))) || (c.getCnh().contains(d) && v.getCategoria().contains(d) || (v.getCategoria().matches(d) && c.getCnh().contains(d))) ) {
 			return true;
 		} else {
 			return false;
