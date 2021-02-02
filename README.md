@@ -1,2 +1,2 @@
 # flowtalents
-Pasta para compartilhamento e entrega de projetos do programa FlowTalents
+Pasta para compartilhamento e entrega do projeto do primeiro desafio do programa FlowTalents
